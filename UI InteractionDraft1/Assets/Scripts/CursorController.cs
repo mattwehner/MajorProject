@@ -24,7 +24,7 @@ namespace Assets.Scripts
                 }
             }
         }
-
+        
         private bool hasClicked(Frame frame)
         {
             GestureList gesture = frame.Gestures();
