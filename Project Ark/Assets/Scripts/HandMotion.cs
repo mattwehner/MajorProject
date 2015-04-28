@@ -44,10 +44,17 @@ namespace Assets.Scripts
 
             _worldStorage.State = HandModeCalculator(_hand);
 
-            if (_state == "pointing" & GestureTap.HasGroundTapped(_frame))
+            if (_state == "pointing")
             {
-                Debug.Log("Way Point Set");
+                Debug.Log("Player Is Pointing");
+
+                _worldStorage.KeyTapIsEnabled = true;
+                if (HasGroundTapped(_frame))
+                {
+                    Debug.Log("Player Has Placed A Way Point");
+                }
             }
+            else { _worldStorage.KeyTapIsEnabled = false; }
         }
 
         private string HandModeCalculator(Hand hand)
