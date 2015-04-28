@@ -3,13 +3,15 @@ using Leap;
 
 namespace Assets.Scripts
 {
-    public class HandMotion : MonoBehaviour
+    internal class HandMotion : MonoBehaviour
     {
         private WorldStorage _worldStorage;
 
         private Frame _frame;
         private Hand _hand;
         private float _minHandHeight;
+
+        private string _state;
 
         void Start ()
         {
@@ -18,9 +20,12 @@ namespace Assets.Scripts
             _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
 
             _minHandHeight = PublicReferenceList.MinHandHeight;
+            
+            GestureTap.GestureTapCoords = new Vector3(2,2,2);
         }
 	
         void Update () {
+            _state = _worldStorage.State;
             _frame = _worldStorage.Frame;
             _hand = _worldStorage.Hand;
 
@@ -36,6 +41,45 @@ namespace Assets.Scripts
             {
                 _worldStorage.IsPaused = true;
             }
+
+            _worldStorage.State = HandModeCalculator(_hand);
+
+            if (_state == "pointing" & GestureTap.HasGroundTapped(_frame))
+            {
+                Debug.Log("Way Point Set");
+            }
+        }
+
+        private string HandModeCalculator(Hand hand)
+        {
+            var state = "grabbing";
+            var fingers = hand.Fingers;
+            var extendedFingers = fingers.Extended();
+            var indexFinger = fingers.FingerType(Finger.FingerType.TYPE_INDEX);
+
+            var isPointing = extendedFingers.Count == 1 &&
+                             extendedFingers[0].Equals(indexFinger[0]);
+
+            if (isPointing) state = "pointing";
+
+            return state;
+        }
+
+        private static bool HasGroundTapped(Frame frame)
+        {
+            var gesture = frame.Gestures();
+            return (gesture[0].Type == Gesture.GestureType.TYPEKEYTAP);
+        }
+    }
+
+    internal class GestureTap
+    {
+        internal static Vector3 GestureTapCoords;
+
+        internal static bool HasGroundTapped(Frame frame)
+        {
+            var gesture = frame.Gestures();
+            return (gesture[0].Type == Gesture.GestureType.TYPEKEYTAP);
         }
     }
 }

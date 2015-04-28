@@ -9,6 +9,8 @@ namespace Assets.Scripts
         public Frame Frame;
         public Hand Hand;
         public bool IsPaused = false;
+        public Vector3 MarkerCoords;
+        public string State;
 
         private void Start()
         {

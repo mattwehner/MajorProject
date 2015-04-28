@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{E085BBDA-0034-E7DC-621A-836CB2E881B3}</ProjectGuid>
+	<ProjectGuid>{63EC33DA-520C-4E0E-C6BB-3253B56C1059}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -76,6 +76,7 @@
      <Compile Include="Assets\Scripts\MenuController.cs" />
      <Compile Include="Assets\Scripts\PublicReferenceList.cs" />
      <Compile Include="Assets\Scripts\StateInstructioner.cs" />
+     <Compile Include="Assets\Scripts\WaypointController.cs" />
      <Compile Include="Assets\Scripts\WorldStorage.cs" />
      <None Include="Assets\Plugins\donotdelete.txt" />
      <None Include="Assets\LeapMotion\README_BEFORE_UPDATING.txt" />
@@ -89,7 +90,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="LeapCSharp.NET3.5">
- <HintPath>D:/Documents/Uni/Year 4/Major Project/Studio/MajorProjectRepo/UI Interaction Draft2/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
+ <HintPath>D:/Documents/Uni/Year 4/Major Project/Studio/MajorProjectRepo/Project Ark/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iossupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

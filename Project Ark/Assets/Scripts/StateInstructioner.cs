@@ -22,5 +22,11 @@ namespace Assets.Scripts
                 _publicReferenceList.Menu.SetActive(true);
             }
         }
+
+        Vector3 RequestWayPoint(Vector3 tapPosition)
+        {
+            var tapCoords = tapPosition;
+            return tapCoords;
+        }
     }
 }
