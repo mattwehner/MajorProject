@@ -20,8 +20,6 @@ namespace Assets.Scripts
             _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
 
             _minHandHeight = PublicReferenceList.MinHandHeight;
-            
-            GestureTap.GestureTapCoords = new Vector3(2,2,2);
         }
 	
         void Update () {
@@ -46,12 +44,10 @@ namespace Assets.Scripts
 
             if (_state == "pointing")
             {
-                Debug.Log("Player Is Pointing");
-
                 _worldStorage.KeyTapIsEnabled = true;
-                if (HasGroundTapped(_frame))
+                if (GestureTap.HasGroundTapped(_frame))
                 {
-                    Debug.Log("Player Has Placed A Way Point");
+                   StateInstructioner.RequestWayPoint(GestureTap.GestureTapCoords);
                 }
             }
             else { _worldStorage.KeyTapIsEnabled = false; }
@@ -71,21 +67,18 @@ namespace Assets.Scripts
 
             return state;
         }
-
-        private static bool HasGroundTapped(Frame frame)
-        {
-            var gesture = frame.Gestures();
-            return (gesture[0].Type == Gesture.GestureType.TYPEKEYTAP);
-        }
     }
 
     internal class GestureTap
     {
-        internal static Vector3 GestureTapCoords;
+        internal static Vector GestureTapCoords;
 
         internal static bool HasGroundTapped(Frame frame)
         {
             var gesture = frame.Gestures();
+            KeyTapGesture keyTap = new KeyTapGesture(gesture[0]);
+
+            GestureTapCoords = keyTap.Position;
             return (gesture[0].Type == Gesture.GestureType.TYPEKEYTAP);
         }
     }

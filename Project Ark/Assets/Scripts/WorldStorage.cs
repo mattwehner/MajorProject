@@ -1,5 +1,6 @@
 ﻿using Leap;
 using UnityEngine;
+using Leap = Leap.Leap;
 
 namespace Assets.Scripts
 {
@@ -7,18 +8,19 @@ namespace Assets.Scripts
     {
         public Controller Controller;
         public Frame Frame;
+        public InteractionBox InteractionBox;
         public Hand Hand;
-        public bool IsPaused = false;
+        public bool IsPaused;
         public bool KeyTapIsEnabled = false;
         public Vector3 MarkerCoords;
         public string State;
+        public static Vector CurrentWayPoint { get; set; }
 
         private void Start()
         {
             Debug.Log("WorldStorage Is Alive");
 
             Controller = new Controller();
-            
         }
 
         private void Update()
@@ -26,9 +28,9 @@ namespace Assets.Scripts
             if (KeyTapIsEnabled)
             {
                 Controller.EnableGesture(Gesture.GestureType.TYPE_KEY_TAP, KeyTapIsEnabled);
-                Debug.Log("Key Tap Is Enabled");
             }
             Frame = Controller.Frame();
+            InteractionBox = Frame.InteractionBox;
             Hand = Frame.Hands[0];
         }
     }

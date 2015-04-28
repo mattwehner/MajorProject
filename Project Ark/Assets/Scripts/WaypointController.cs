@@ -1,19 +1,36 @@
-﻿using UnityEngine;
+﻿using Leap;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
-    internal class WaypointController : MonoBehaviour
+    public class WaypointController : MonoBehaviour
     {
-        private Vector3 _fingerTapPosition;
-        // Use this for initialization
+        private static PublicReferenceList _publicReferenceList;
+
         void Start () {
             Debug.Log("WaypointController is Alive");
-            Debug.Log("Gesture Tap Position" + GestureTap.GestureTapCoords);
         }
-	
-        // Update is called once per frame
-        void Update ()
+
+        private static Vector WayPointCreator(Vector tapPosition)
         {
+            var tapCoords = new Vector3(tapPosition.x, tapPosition.y, tapPosition.z);
+            _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
+
+            if (_publicReferenceList.CurrentMarker == null)
+            {
+                Instantiate(_publicReferenceList.WayPointPrefab, tapCoords, Quaternion.identity);
+                _publicReferenceList.CurrentMarker = GameObject.Find("Marker(Clone)");
+            }
+            else
+            {
+                _publicReferenceList.CurrentMarker.transform.position = tapCoords;
+            }
+            return tapPosition;
+        }
+
+        public static Vector WayPointMaster(Vector tapPosition)
+        {
+            return WayPointCreator(tapPosition);
         }
     }
 }

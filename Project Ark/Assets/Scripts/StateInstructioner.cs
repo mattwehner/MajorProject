@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Leap;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -23,10 +24,10 @@ namespace Assets.Scripts
             }
         }
 
-        Vector3 RequestWayPoint(Vector3 tapPosition)
+        public static void RequestWayPoint(Vector tapPosition)
         {
-            var tapCoords = tapPosition;
-            return tapCoords;
+            WorldStorage.CurrentWayPoint = WaypointController.WayPointMaster(tapPosition);
+            Debug.Log(WorldStorage.CurrentWayPoint);
         }
     }
 }
