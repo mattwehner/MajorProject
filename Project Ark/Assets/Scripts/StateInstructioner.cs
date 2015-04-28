@@ -24,7 +24,7 @@ namespace Assets.Scripts
             }
         }
 
-        public static void RequestWayPoint(Vector tapPosition)
+        public static void RequestWayPoint(Vector3 tapPosition)
         {
             WorldStorage.CurrentWayPoint = WaypointController.WayPointMaster(tapPosition);
             Debug.Log(WorldStorage.CurrentWayPoint);

@@ -6,6 +6,7 @@ namespace Assets.Scripts
     internal class HandMotion : MonoBehaviour
     {
         private WorldStorage _worldStorage;
+        private static PublicReferenceList _publicReferenceList;
 
         private Frame _frame;
         private Hand _hand;
@@ -18,6 +19,7 @@ namespace Assets.Scripts
             Debug.Log("HandMotion Is Alive");
 
             _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
+            _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
 
             _minHandHeight = PublicReferenceList.MinHandHeight;
         }
@@ -29,6 +31,7 @@ namespace Assets.Scripts
 
             var interactionBox = _frame.InteractionBox;
             var handPosition = interactionBox.NormalizePoint(_hand.StabilizedPalmPosition);
+            var leapControllerPosition = _publicReferenceList.LeapController.transform.position;
             
             if (!_hand.IsValid)
             {
@@ -45,7 +48,7 @@ namespace Assets.Scripts
             if (_state == "pointing")
             {
                 _worldStorage.KeyTapIsEnabled = true;
-                if (GestureTap.HasGroundTapped(_frame))
+                if (GestureTap.HasGroundTapped(_frame, interactionBox, leapControllerPosition))
                 {
                    StateInstructioner.RequestWayPoint(GestureTap.GestureTapCoords);
                 }
@@ -71,14 +74,22 @@ namespace Assets.Scripts
 
     internal class GestureTap
     {
-        internal static Vector GestureTapCoords;
+        internal static Vector3 GestureTapCoords;
 
-        internal static bool HasGroundTapped(Frame frame)
+        internal static bool HasGroundTapped(Frame frame, InteractionBox interactionBox, Vector3 leapControllerPosition)
         {
             var gesture = frame.Gestures();
             KeyTapGesture keyTap = new KeyTapGesture(gesture[0]);
+            var localisedTapPosition = interactionBox.NormalizePoint(keyTap.Position);
 
-            GestureTapCoords = keyTap.Position;
+            var unityTapPosition = new Vector3(
+                (leapControllerPosition.x + localisedTapPosition.x),
+                (leapControllerPosition.y + localisedTapPosition.y),
+                (leapControllerPosition.z + localisedTapPosition.z)
+                );
+
+            GestureTapCoords = unityTapPosition;
+
             return (gesture[0].Type == Gesture.GestureType.TYPEKEYTAP);
         }
     }

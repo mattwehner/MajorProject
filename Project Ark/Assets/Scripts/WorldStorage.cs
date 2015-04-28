@@ -14,7 +14,7 @@ namespace Assets.Scripts
         public bool KeyTapIsEnabled = false;
         public Vector3 MarkerCoords;
         public string State;
-        public static Vector CurrentWayPoint { get; set; }
+        public static Vector3 CurrentWayPoint { get; set; }
 
         private void Start()
         {

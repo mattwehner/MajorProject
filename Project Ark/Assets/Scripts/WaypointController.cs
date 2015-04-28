@@ -11,7 +11,7 @@ namespace Assets.Scripts
             Debug.Log("WaypointController is Alive");
         }
 
-        private static Vector WayPointCreator(Vector tapPosition)
+        private static Vector3 WayPointCreator(Vector3 tapPosition)
         {
             var tapCoords = new Vector3(tapPosition.x, tapPosition.y, tapPosition.z);
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
@@ -28,7 +28,7 @@ namespace Assets.Scripts
             return tapPosition;
         }
 
-        public static Vector WayPointMaster(Vector tapPosition)
+        public static Vector3 WayPointMaster(Vector3 tapPosition)
         {
             return WayPointCreator(tapPosition);
         }
