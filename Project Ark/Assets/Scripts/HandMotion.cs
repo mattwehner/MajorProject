@@ -68,6 +68,13 @@ namespace Assets.Scripts
 
             if (isPointing) state = "pointing";
 
+            Frame frame = _worldStorage.Frame;
+            InteractionBox interactionBox = frame.InteractionBox;
+            Pointable pointerFinger = hand.Fingers.Frontmost;
+            Debug.Log("Finger Position: " + interactionBox.NormalizePoint(pointerFinger.TipPosition));
+
+
+
             return state;
         }
     }
@@ -79,16 +86,10 @@ namespace Assets.Scripts
         internal static bool HasGroundTapped(Frame frame, InteractionBox interactionBox, Vector3 leapControllerPosition)
         {
             var gesture = frame.Gestures();
-            KeyTapGesture keyTap = new KeyTapGesture(gesture[0]);
-            var localisedTapPosition = interactionBox.NormalizePoint(keyTap.Position);
+            Vector keyTapPosition = new KeyTapGesture(gesture[0]).Position;
+            
 
-            var unityTapPosition = new Vector3(
-                (leapControllerPosition.x + localisedTapPosition.x),
-                (leapControllerPosition.y + localisedTapPosition.y),
-                (leapControllerPosition.z + localisedTapPosition.z)
-                );
-
-            GestureTapCoords = unityTapPosition;
+            //GestureTapCoords = unityTapPosition;
 
             return (gesture[0].Type == Gesture.GestureType.TYPEKEYTAP);
         }

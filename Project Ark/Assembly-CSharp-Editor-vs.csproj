@@ -62,7 +62,7 @@
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="LeapCSharp.NET3.5">
- <HintPath>D:/Documents/Uni/Year 4/Major Project/Studio/MajorProjectRepo/Project Ark/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
+ <HintPath>C:/Users/Matt/Documents/MajorProject/Project Ark/Assets/Plugins/LeapCSharp.NET3.5.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
