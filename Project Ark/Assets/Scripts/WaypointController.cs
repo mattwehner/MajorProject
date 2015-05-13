@@ -13,8 +13,10 @@ namespace Assets.Scripts
 
         private static Vector3 WayPointCreator(Vector3 tapPosition)
         {
-            var tapCoords = new Vector3(tapPosition.x, tapPosition.y, tapPosition.z);
+            
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
+
+            Vector3 tapCoords = FindMarkerHeight(tapPosition);
 
             if (_publicReferenceList.CurrentMarker == null)
             {
@@ -31,6 +33,23 @@ namespace Assets.Scripts
         public static Vector3 WayPointMaster(Vector3 tapPosition)
         {
             return WayPointCreator(tapPosition);
+        }
+
+        private static Vector3 FindMarkerHeight(Vector3 startPosition)
+        {
+            var newCoords = startPosition;
+
+            var rayStart = new Vector3(startPosition.x, (startPosition.y), startPosition.z);
+            Ray collisionRay = new Ray(rayStart, Vector3.down);
+            RaycastHit hit;;
+
+            if (Physics.Raycast(collisionRay, out hit))
+            {
+                Debug.Log("before" + newCoords);
+                newCoords.y = hit.point.y;
+                Debug.Log("after" + newCoords);
+            }
+            return newCoords;
         }
     }
 }

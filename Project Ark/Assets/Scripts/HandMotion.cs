@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using Leap;
+using UnityEditorInternal;
 
 namespace Assets.Scripts
 {
     internal class HandMotion : MonoBehaviour
     {
         private WorldStorage _worldStorage;
-        private static PublicReferenceList _publicReferenceList;
+        private StateInstructioner _stateInstructioner;
 
         private Frame _frame;
         private Hand _hand;
@@ -19,7 +20,7 @@ namespace Assets.Scripts
             Debug.Log("HandMotion Is Alive");
 
             _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
-            _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
+            _stateInstructioner = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<StateInstructioner>();
 
             _minHandHeight = PublicReferenceList.MinHandHeight;
         }
@@ -31,7 +32,6 @@ namespace Assets.Scripts
 
             var interactionBox = _frame.InteractionBox;
             var handPosition = interactionBox.NormalizePoint(_hand.StabilizedPalmPosition);
-            var leapControllerPosition = _publicReferenceList.LeapController.transform.position;
             
             if (!_hand.IsValid)
             {
@@ -48,12 +48,27 @@ namespace Assets.Scripts
             if (_state == "pointing")
             {
                 _worldStorage.KeyTapIsEnabled = true;
-                if (GestureTap.HasGroundTapped(_frame, interactionBox, leapControllerPosition))
+                if (GestureTap.HasGroundTapped(_frame))
                 {
-                   StateInstructioner.RequestWayPoint(GestureTap.GestureTapCoords);
+                   _stateInstructioner.RequestWayPoint(GestureTap.GestureKeyTapCoords);
                 }
             }
             else { _worldStorage.KeyTapIsEnabled = false; }
+
+            IsAtBoundry(_frame);
+        }
+
+        private void IsAtBoundry(Frame frame)
+        {
+            var normalizedHandPosition = _frame.InteractionBox.NormalizePoint(frame.Hands[0].PalmPosition);
+            if (normalizedHandPosition.x == 0)
+            {
+                _stateInstructioner.BounderyPlayerMovement("move left");
+            }
+            if (normalizedHandPosition.x == 1)
+            {
+                _stateInstructioner.BounderyPlayerMovement("move right");
+            }
         }
 
         private string HandModeCalculator(Hand hand)
@@ -74,23 +89,34 @@ namespace Assets.Scripts
 
     internal class GestureTap
     {
-        internal static Vector3 GestureTapCoords;
+        internal static Vector3 GestureKeyTapCoords = new Vector3(1,2,3);
 
-        internal static bool HasGroundTapped(Frame frame, InteractionBox interactionBox, Vector3 leapControllerPosition)
+        internal static bool HasGroundTapped(Frame frame)
         {
+            
             var gesture = frame.Gestures();
-            KeyTapGesture keyTap = new KeyTapGesture(gesture[0]);
-            var localisedTapPosition = interactionBox.NormalizePoint(keyTap.Position);
+            var keyTapPosition = new KeyTapGesture(gesture[0]).Position;
+            
+            bool hasGroundTapped = (gesture[0].Type == Gesture.GestureType.TYPEKEYTAP); 
 
-            var unityTapPosition = new Vector3(
-                (leapControllerPosition.x + localisedTapPosition.x),
-                (leapControllerPosition.y + localisedTapPosition.y),
-                (leapControllerPosition.z + localisedTapPosition.z)
-                );
+            if (hasGroundTapped)
+            {
+                
+                Debug.Log("keyTapPosition " + keyTapPosition);
 
-            GestureTapCoords = unityTapPosition;
+                GestureKeyTapCoords = ConvertLeapToWorld.Point(keyTapPosition);
+            }
+            
+            return hasGroundTapped;
+        }
+    }
 
-            return (gesture[0].Type == Gesture.GestureType.TYPEKEYTAP);
+    internal static class ConvertLeapToWorld {
+        internal static Vector3 Point(Vector original){
+
+            Vector3 unityPosition = original.ToUnityScaled();
+            Vector3 worldPosition = PublicReferenceList.LeapController.transform.TransformPoint(unityPosition);
+            return worldPosition;
         }
     }
 }

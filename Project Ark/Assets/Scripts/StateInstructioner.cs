@@ -6,12 +6,15 @@ namespace Assets.Scripts
     internal class StateInstructioner : MonoBehaviour {
         private WorldStorage _worldStorage;
         private PublicReferenceList _publicReferenceList;
+        private PlayerController _playerController;
 
         void Start () {
 	        Debug.Log("StateInstructioner Is Alive");
 
             _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
+            _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            
         }
 	
         void Update ()
@@ -24,10 +27,15 @@ namespace Assets.Scripts
             }
         }
 
-        public static void RequestWayPoint(Vector3 tapPosition)
+        public void RequestWayPoint(Vector3 tapPosition)
         {
             WorldStorage.CurrentWayPoint = WaypointController.WayPointMaster(tapPosition);
-            Debug.Log(WorldStorage.CurrentWayPoint);
+            Debug.Log("World Storage Way Point: " + WorldStorage.CurrentWayPoint);
+        }
+
+        public void BounderyPlayerMovement(string direction)
+        {
+            _playerController.BoundryMovementMaster(direction);
         }
     }
 }
