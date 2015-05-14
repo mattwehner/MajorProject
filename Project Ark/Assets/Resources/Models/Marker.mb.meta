@@ -14,6 +14,7 @@ ModelImporter:
     100012: //RootNode
     100014: pCylinder1
     100016: pPlane1
+    100018: pPlane2
     400000: joint1
     400002: joint2
     400004: joint3
@@ -23,10 +24,14 @@ ModelImporter:
     400012: //RootNode
     400014: pCylinder1
     400016: pPlane1
+    400018: pPlane2
     2300000: pCylinder1
+    2300002: pPlane2
     3300000: pCylinder1
+    3300002: pPlane2
     4300000: pCylinder1
     4300002: pPlane1
+    4300004: pPlane2
     7400000: Take 001
     9500000: //RootNode
     13700000: pPlane1

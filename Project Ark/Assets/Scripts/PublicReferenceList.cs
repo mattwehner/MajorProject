@@ -6,8 +6,7 @@ namespace Assets.Scripts
     {
         public GameObject Character;
         public GameObject Player;
-        public GameObject LeapController;
-        public GameObject Camera;
+        public static GameObject LeapController;
         public GameObject Menu;
         public GameObject Object;
         public GameObject CurrentMarker;
@@ -18,6 +17,8 @@ namespace Assets.Scripts
         void Start()
         {
             Debug.Log("PublicReferenceList Is Alive");
+            LeapController = GameObject.FindGameObjectWithTag("LeapController");
         }
     }
+
 }
