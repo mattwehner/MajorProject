@@ -286,6 +286,18 @@ ModelImporter:
     100556: Robot:transform7
     100558: Robot:transform8
     100560: Robot:transform9
+    100562: Robot:polySurface45
+    100564: Robot:polySurface46
+    100566: Robot:Robot:pCylinder5
+    100568: Robot:Robot:transform1
+    100570: Robot:Robot:transform2
+    100572: Robot:Robot:transform3
+    100574: Robot:Robot:transform4
+    100576: Robot:Axel
+    100578: Robot:Head
+    100580: Robot:Robot:pCylinder44
+    100582: Robot:Robot:transform5
+    100584: Robot:Robot:transform6
     400000: front1
     400002: group1
     400004: group10
@@ -567,6 +579,18 @@ ModelImporter:
     400556: Robot:transform7
     400558: Robot:transform8
     400560: Robot:transform9
+    400562: Robot:polySurface45
+    400564: Robot:polySurface46
+    400566: Robot:Robot:pCylinder5
+    400568: Robot:Robot:transform1
+    400570: Robot:Robot:transform2
+    400572: Robot:Robot:transform3
+    400574: Robot:Robot:transform4
+    400576: Robot:Axel
+    400578: Robot:Head
+    400580: Robot:Robot:pCylinder44
+    400582: Robot:Robot:transform5
+    400584: Robot:Robot:transform6
     2300000: pCube1
     2300002: pCube2
     2300004: pCube3
@@ -698,6 +722,12 @@ ModelImporter:
     2300256: Robot:Robot:pCube7
     2300258: Robot:Robot:pCube8
     2300260: Robot:Robot:pCube9
+    2300262: Robot:polySurface45
+    2300264: Robot:polySurface46
+    2300266: Robot:Robot:pCylinder5
+    2300268: Robot:Axel
+    2300270: Robot:Head
+    2300272: Robot:Robot:pCylinder44
     3300000: pCube1
     3300002: pCube2
     3300004: pCube3
@@ -829,6 +859,12 @@ ModelImporter:
     3300256: Robot:Robot:pCube7
     3300258: Robot:Robot:pCube8
     3300260: Robot:Robot:pCube9
+    3300262: Robot:polySurface45
+    3300264: Robot:polySurface46
+    3300266: Robot:Robot:pCylinder5
+    3300268: Robot:Axel
+    3300270: Robot:Head
+    3300272: Robot:Robot:pCylinder44
     4300000: pCube1
     4300002: pSphere1
     4300004: pCylinder1
@@ -960,6 +996,12 @@ ModelImporter:
     4300256: pCylinder49
     4300258: pCylinder50
     4300260: pCylinder22
+    4300262: Robot:polySurface46
+    4300264: Robot:polySurface45
+    4300266: Robot:Robot:pCylinder5
+    4300268: Robot:Axel
+    4300270: Robot:Head
+    4300272: Robot:Robot:pCylinder44
     9500000: //RootNode
   materials:
     importMaterials: 0

@@ -101,9 +101,6 @@ namespace Assets.Scripts
 
             if (hasGroundTapped)
             {
-                
-                Debug.Log("keyTapPosition " + keyTapPosition);
-
                 GestureKeyTapCoords = ConvertLeapToWorld.Point(keyTapPosition);
             }
             
