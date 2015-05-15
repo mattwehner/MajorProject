@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -7,17 +8,21 @@ namespace Assets.Scripts
         public GameObject Character;
         public GameObject Player;
         public static GameObject LeapController;
-        public GameObject Menu;
+        public static GameObject Menu;
+        public static GameObject DebugMenu;
+        public Button DebugApplyButton;
+        public Button DebugRevertButton;
+        public Button DebugRestoreButton;
         public GameObject Object;
         public GameObject CurrentMarker;
         public GameObject WayPointPrefab;
-
-        public static float MinHandHeight = 0.1f;
 
         void Start()
         {
             Debug.Log("PublicReferenceList Is Alive");
             LeapController = GameObject.FindGameObjectWithTag("LeapController");
+            Menu = GameObject.FindGameObjectWithTag("Menu");
+            DebugMenu = GameObject.FindGameObjectWithTag("DebugMenu");
         }
     }
 

@@ -22,7 +22,7 @@ namespace Assets.Scripts
             _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
             _stateInstructioner = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<StateInstructioner>();
 
-            _minHandHeight = PublicReferenceList.MinHandHeight;
+            _minHandHeight = Settings.Game.MinHandHeight;
         }
 	
         void Update () {
@@ -40,7 +40,7 @@ namespace Assets.Scripts
 
             if (handPosition.y < _minHandHeight)
             {
-                _worldStorage.IsPaused = true;
+                WorldStorage.IsPaused = true;
             }
 
             _worldStorage.State = HandModeCalculator(_hand);
@@ -50,7 +50,7 @@ namespace Assets.Scripts
                 _worldStorage.KeyTapIsEnabled = true;
                 if (GestureTap.HasGroundTapped(_frame))
                 {
-                   _stateInstructioner.RequestWayPoint(GestureTap.GestureKeyTapCoords);
+                   _stateInstructioner.UpdateWayPoint(GestureTap.GestureKeyTapCoords);
                 }
             }
             else { _worldStorage.KeyTapIsEnabled = false; }

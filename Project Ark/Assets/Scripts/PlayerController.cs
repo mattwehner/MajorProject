@@ -13,7 +13,7 @@ namespace Assets.Scripts
             }
         private void BoundryMovement(string direction)
         {
-            var playerMovementSpeed = WorldStorage.PlayerMovementSpeed;
+            var playerMovementSpeed = Settings.Player.PlayerMovementSpeed;
             if (direction == "move left")
             {
                 transform.Translate(new Vector3(-playerMovementSpeed, 0) * Time.deltaTime);

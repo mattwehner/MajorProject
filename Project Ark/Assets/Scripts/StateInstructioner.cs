@@ -4,33 +4,39 @@ using UnityEngine;
 namespace Assets.Scripts
 {
     internal class StateInstructioner : MonoBehaviour {
-        private WorldStorage _worldStorage;
         private PublicReferenceList _publicReferenceList;
         private PlayerController _playerController;
+        private CharacterMaster _characterMaster;
 
         void Start () {
 	        Debug.Log("StateInstructioner Is Alive");
 
-            _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            _characterMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<CharacterMaster>();
         }
 	
         void Update ()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Pause) || Input.GetKeyDown(KeyCode.Space)) _worldStorage.IsPaused = !_worldStorage.IsPaused;
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.Escape)) WorldStorage.IsPaused = !WorldStorage.IsPaused;
+            if (Input.GetKeyDown(KeyCode.Tab)) WorldStorage.IsDebugOpen = !WorldStorage.IsDebugOpen;
 
-            if (_worldStorage.IsPaused)
+            if (WorldStorage.IsPaused)
             {
-                _publicReferenceList.Menu.SetActive(true);
+                PublicReferenceList.Menu.SetActive(true);
+            }
+            if (WorldStorage.IsDebugOpen)
+            {
+                PublicReferenceList.DebugMenu.SetActive(true);
             }
         }
 
         public void UpdateWayPoint(Vector3 tapPosition)
         {
-            WorldStorage.CurrentWayPoint = WaypointController.WayPointMaster(tapPosition);
-            Debug.Log("World Storage Way Point: " + WorldStorage.CurrentWayPoint);
+            var wsCWP = WorldStorage.CurrentWayPoint;
+            wsCWP = WaypointController.WayPointMaster(tapPosition);
+            _characterMaster.MoveCharacterToWayPoint(wsCWP);
+            Debug.Log("World Storage Way Point: " + wsCWP);
         }
 
         public void BounderyPlayerMovement(string direction)
