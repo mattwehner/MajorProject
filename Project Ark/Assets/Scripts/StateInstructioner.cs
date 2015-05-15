@@ -14,12 +14,12 @@ namespace Assets.Scripts
             _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            
         }
 	
         void Update ()
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) _worldStorage.IsPaused = !_worldStorage.IsPaused;
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Pause) || Input.GetKeyDown(KeyCode.Space)) _worldStorage.IsPaused = !_worldStorage.IsPaused;
+            if (Input.GetKeyDown(KeyCode.Tab))
 
             if (_worldStorage.IsPaused)
             {
@@ -27,7 +27,7 @@ namespace Assets.Scripts
             }
         }
 
-        public void RequestWayPoint(Vector3 tapPosition)
+        public void UpdateWayPoint(Vector3 tapPosition)
         {
             WorldStorage.CurrentWayPoint = WaypointController.WayPointMaster(tapPosition);
             Debug.Log("World Storage Way Point: " + WorldStorage.CurrentWayPoint);
