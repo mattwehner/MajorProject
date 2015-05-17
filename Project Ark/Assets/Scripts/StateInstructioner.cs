@@ -10,6 +10,7 @@ namespace Assets.Scripts
 
         void Start () {
 	        Debug.Log("StateInstructioner Is Alive");
+            RenderSettings.ambientLight = Color.black;
 
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();

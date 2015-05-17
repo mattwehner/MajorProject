@@ -141,6 +141,35 @@ ModelImporter:
     100266: transform7
     100268: transform8
     100270: transform9
+    100272: Base
+    100274: ConsoleSpin
+    100276: consoleSpin_Frame
+    100278: consoleSpin_handle
+    100280: ConsoleWall
+    100282: DoorLarge
+    100284: DoorSmall
+    100286: leftDoor_large
+    100288: leftDoor_small
+    100290: Light_Long_large
+    100292: pCube90
+    100294: PowerCell
+    100296: rightDoor_large
+    100298: rightDoor_small
+    100300: SeperatorDoor
+    100302: SeperatorRoof
+    100304: Support_Corridor
+    100306: Base1
+    100308: Base_Collider
+    100310: level
+    100312: rightDoor_small 1
+    100314: transform1
+    100316: transform11
+    100318: transform12
+    100320: transform13
+    100322: transform2
+    100324: transform3
+    100326: transform4
+    100328: transform5
     400000: ambientLight2
     400002: areaLight13
     400004: Component_3_1
@@ -277,6 +306,35 @@ ModelImporter:
     400266: transform7
     400268: transform8
     400270: transform9
+    400272: Base
+    400274: ConsoleSpin
+    400276: consoleSpin_Frame
+    400278: consoleSpin_handle
+    400280: ConsoleWall
+    400282: DoorLarge
+    400284: DoorSmall
+    400286: leftDoor_large
+    400288: leftDoor_small
+    400290: Light_Long_large
+    400292: pCube90
+    400294: PowerCell
+    400296: rightDoor_large
+    400298: rightDoor_small
+    400300: SeperatorDoor
+    400302: SeperatorRoof
+    400304: Support_Corridor
+    400306: Base1
+    400308: Base_Collider
+    400310: level
+    400312: rightDoor_small 1
+    400314: transform1
+    400316: transform11
+    400318: transform12
+    400320: transform13
+    400322: transform2
+    400324: transform3
+    400326: transform4
+    400328: transform5
     2300000: level2:level:pCube13
     2300002: level2:level:pCube18
     2300004: level2:level:pCube19
@@ -355,6 +413,22 @@ ModelImporter:
     2300150: level2:pSphere7
     2300152: level2:pSphere8
     2300154: level2:pSphere9
+    2300156: Base
+    2300158: consoleSpin_Frame
+    2300160: consoleSpin_handle
+    2300162: ConsoleWall
+    2300164: leftDoor_large
+    2300166: leftDoor_small
+    2300168: Light_Long_large
+    2300170: pCube90
+    2300172: PowerCell
+    2300174: rightDoor_large
+    2300176: rightDoor_small
+    2300178: SeperatorDoor
+    2300180: SeperatorRoof
+    2300182: Support_Corridor
+    2300184: Base1
+    2300186: Base_Collider
     3300000: level2:level:pCube13
     3300002: level2:level:pCube18
     3300004: level2:level:pCube19
@@ -433,6 +507,22 @@ ModelImporter:
     3300150: level2:pSphere7
     3300152: level2:pSphere8
     3300154: level2:pSphere9
+    3300156: Base
+    3300158: consoleSpin_Frame
+    3300160: consoleSpin_handle
+    3300162: ConsoleWall
+    3300164: leftDoor_large
+    3300166: leftDoor_small
+    3300168: Light_Long_large
+    3300170: pCube90
+    3300172: PowerCell
+    3300174: rightDoor_large
+    3300176: rightDoor_small
+    3300178: SeperatorDoor
+    3300180: SeperatorRoof
+    3300182: Support_Corridor
+    3300184: Base1
+    3300186: Base_Collider
     4300000: level2:hand_right
     4300002: level2:level:polySurface1
     4300004: level2:level:polySurface2
@@ -512,11 +602,27 @@ ModelImporter:
     4300152: level2:pCylinder22
     4300154: level2:pCylinder23
     4300156: level2:pCylinder24
+    4300158: pCube90
+    4300160: rightDoor_small
+    4300162: leftDoor_small
+    4300164: rightDoor_large
+    4300166: leftDoor_large
+    4300168: consoleSpin_handle
+    4300170: consoleSpin_Frame
+    4300172: Base
+    4300174: ConsoleWall
+    4300176: Light_Long_large
+    4300178: Support_Corridor
+    4300180: SeperatorDoor
+    4300182: PowerCell
+    4300184: SeperatorRoof
+    4300186: Base1
+    4300188: Base_Collider
     7400000: Take 001
     9500000: //RootNode
     13700000: level2:hand_right
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -553,7 +659,7 @@ ModelImporter:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
