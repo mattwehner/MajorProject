@@ -35,14 +35,25 @@ namespace Assets.Scripts
         public void UpdateWayPoint(Vector3 tapPosition)
         {
             var wsCWP = WorldStorage.CurrentWayPoint;
-            wsCWP = WaypointController.WayPointMaster(tapPosition);
-            _characterMaster.MoveCharacterToWayPoint(wsCWP);
-            Debug.Log("World Storage Way Point: " + wsCWP);
+            WorldStorage.CurrentWayPoint = WaypointController.WayPointMaster(tapPosition);
+
+            _characterMaster.MoveCharacterToWayPoint(WorldStorage.CurrentWayPoint);
+
+            Debug.Log("World Storage Way Point: " + WorldStorage.CurrentWayPoint);
         }
 
         public void BounderyPlayerMovement(string direction)
         {
             _playerController.BoundryMovementMaster(direction);
+        }
+
+
+        public static void RecieveCommand(string command)
+        {
+            if (command == "At Way Point")
+            {
+                Debug.Log("I am at the way point!");
+            }
         }
     }
 }

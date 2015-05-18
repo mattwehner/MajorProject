@@ -45,9 +45,7 @@ namespace Assets.Scripts
 
             if (Physics.Raycast(collisionRay, out hit))
             {
-                Debug.Log("before" + newCoords);
                 newCoords.y = hit.point.y;
-                Debug.Log("after" + newCoords);
             }
             return newCoords;
         }

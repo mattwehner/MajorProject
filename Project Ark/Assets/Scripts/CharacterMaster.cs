@@ -10,9 +10,14 @@ namespace Assets.Scripts
             _characterController = GameObject.FindGameObjectWithTag("Arbie").GetComponent<CharacterController>();
         }
 
+        void Update()
+        {
+            
+        }
+
         internal void MoveCharacterToWayPoint(Vector3 destination)
         {
-            _characterController.MoveToPosition(destination);
+           _characterController.MoveToPosition(destination);
         }
     }
 }
