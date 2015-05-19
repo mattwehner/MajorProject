@@ -1,11 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class CharacterController : MonoBehaviour
+    internal class CharacterController : MonoBehaviour
     {
-        private NavMeshAgent _arbie;
-        private Vector3 _arbiePosition;
+        private GameObject _arbie;
+
+        private bool hasBeenThrown = false;
         void Start()
         {
             Debug.Log("CharacterController Is Alive");
@@ -14,15 +16,25 @@ namespace Assets.Scripts
 
         void Update()
         {
-            _arbiePosition = transform.position;
-            if (_arbiePosition == WorldStorage.CurrentWayPoint) StateInstructioner.RecieveCommand("At Way Point");
-            Debug.Log("_arbiePosition" + _arbiePosition);
-            Debug.Log("CurrentWayPoint" + WorldStorage.CurrentWayPoint);
+            if (hasBeenThrown && (_arbie.GetComponent<Rigidbody>().velocity.magnitude <= Settings.Game.CharacterRecoverVelocity))
+            {
+                StartCoroutine(WaitFor(5));
+                Debug.Log("I'm Back");
+                hasBeenThrown = false;
+                _arbie.GetComponent<NavMeshAgent>().enabled = true;
+            }
         }
 
-        public void MoveToPosition(Vector3 Destination)
+        void OnCollisionEnter(Collision collision)
         {
-            _arbie.SetDestination(Destination);
+            if (collision.collider.tag == "Level") return;
+            hasBeenThrown = true;
+            _arbie.GetComponent<NavMeshAgent>().enabled = false;
+        }
+
+        IEnumerator WaitFor(float waitPeriod)
+        {
+            yield return new WaitForSeconds(waitPeriod);
         }
     }
 }
