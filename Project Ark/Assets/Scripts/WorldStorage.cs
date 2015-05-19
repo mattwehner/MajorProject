@@ -14,7 +14,9 @@ namespace Assets.Scripts
         internal static bool IsDebugOpen;
         internal bool KeyTapIsEnabled = false;
         internal string State;
-        internal static Vector3 CurrentWayPoint { get; set; }
+
+        internal static Vector3 WayPointPosition { get; set; }
+        internal static bool CompletedWayPoint = true;
 
 
         private void Start()

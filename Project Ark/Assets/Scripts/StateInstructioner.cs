@@ -6,7 +6,7 @@ namespace Assets.Scripts
     internal class StateInstructioner : MonoBehaviour {
         private PublicReferenceList _publicReferenceList;
         private PlayerController _playerController;
-        private CharacterMaster _characterMaster;
+        private ArbieMaster _characterMaster;
 
         void Start () {
 	        Debug.Log("StateInstructioner Is Alive");
@@ -14,7 +14,7 @@ namespace Assets.Scripts
 
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            _characterMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<CharacterMaster>();
+            _characterMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<ArbieMaster>();
         }
 	
         void Update ()
@@ -34,12 +34,9 @@ namespace Assets.Scripts
 
         public void UpdateWayPoint(Vector3 tapPosition)
         {
-            var wsCWP = WorldStorage.CurrentWayPoint;
-            WorldStorage.CurrentWayPoint = WaypointController.WayPointMaster(tapPosition);
-
-            _characterMaster.MoveCharacterToWayPoint(WorldStorage.CurrentWayPoint);
-
-            Debug.Log("World Storage Way Point: " + WorldStorage.CurrentWayPoint);
+            WaypointController.WayPointMaster(tapPosition);
+            _characterMaster.MoveCharacterToWayPoint(WorldStorage.WayPointPosition);
+            Debug.Log("Set Way Point");
         }
 
         public void BounderyPlayerMovement(string direction)
@@ -47,12 +44,11 @@ namespace Assets.Scripts
             _playerController.BoundryMovementMaster(direction);
         }
 
-
-        public static void RecieveCommand(string command)
+        public static void ArbieExclamation(string exclamation)
         {
-            if (command == "At Way Point")
+            if (exclamation == "way point reached")
             {
-                Debug.Log("I am at the way point!");
+                WorldStorage.CompletedWayPoint = true;
             }
         }
     }

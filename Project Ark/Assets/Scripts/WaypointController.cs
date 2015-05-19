@@ -10,8 +10,13 @@ namespace Assets.Scripts
         void Start () {
             Debug.Log("WaypointController is Alive");
         }
+        
+        public static void WayPointMaster(Vector3 tapPosition)
+        {
+            WayPointCreator(tapPosition);
+        }
 
-        private static Vector3 WayPointCreator(Vector3 tapPosition)
+        private static void WayPointCreator(Vector3 tapPosition)
         {
             
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
@@ -27,12 +32,14 @@ namespace Assets.Scripts
             {
                 _publicReferenceList.CurrentMarker.transform.position = tapCoords;
             }
-            return tapPosition;
+
+            WorldStorage.WayPointPosition = tapCoords;
+            WorldStorage.CompletedWayPoint = false;
         }
 
-        public static Vector3 WayPointMaster(Vector3 tapPosition)
+        public void RemoveWayPoint()
         {
-            return WayPointCreator(tapPosition);
+            Destroy(_publicReferenceList.CurrentMarker);
         }
 
         private static Vector3 FindMarkerHeight(Vector3 startPosition)

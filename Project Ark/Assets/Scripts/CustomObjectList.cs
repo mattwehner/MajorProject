@@ -31,6 +31,8 @@ namespace Assets.Scripts
             float playerMovementSpeed,
             float characterSpeed,
             float minHandHeight
+            //float CharacterRecoverVelocity,
+            //float DistanceRemainingToWayPoint
             )
         {
             PlayerMovementSpeed = playerMovementSpeed;
@@ -41,5 +43,7 @@ namespace Assets.Scripts
         public float PlayerMovementSpeed { get; set; }
         public float CharacterSpeed { get; set; }
         public float MinHandHeight { get; set; }
+        //public float CharacterRecoverVelocity { get; set; }
+        //public float DistanceRemainingToWayPoint { get; set; }
     }
 }

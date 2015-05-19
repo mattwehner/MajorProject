@@ -5,7 +5,7 @@ namespace Assets.Scripts
 {
     public class PublicReferenceList : MonoBehaviour
     {
-        public static NavMeshAgent Character;
+        public static GameObject Character;
         public GameObject Player;
         public static GameObject LeapController;
         public static GameObject Menu;
@@ -23,7 +23,7 @@ namespace Assets.Scripts
             LeapController = GameObject.FindGameObjectWithTag("LeapController");
             Menu = GameObject.FindGameObjectWithTag("Menu");
             DebugMenu = GameObject.FindGameObjectWithTag("DebugMenu");
-            Character = GameObject.FindGameObjectWithTag("Arbie").GetComponent<NavMeshAgent>();
+            Character = GameObject.FindGameObjectWithTag("Arbie");
         }
     }
 
