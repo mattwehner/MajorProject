@@ -28,7 +28,11 @@ namespace Assets.Scripts
                 StartCoroutine(WaitFor(5));
                 _hasBeenThrown = false;
                 _arbieAgent.enabled = !WorldStorage.CompletedWayPoint;
-                _arbieController.CreatePath(_path);
+                if (!WorldStorage.CompletedWayPoint)
+                {
+                    _arbieController.CreatePath(_path);
+                }
+                
             }
             ConditionsOnPosition();
         }

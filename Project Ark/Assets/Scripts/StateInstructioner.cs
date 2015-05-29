@@ -8,6 +8,8 @@ namespace Assets.Scripts
         private PlayerController _playerController;
         private ArbieMaster _arbieMaster;
 
+        private bool _wasJustPaused;
+
         void Start () {
 	        Debug.Log("StateInstructioner Is Alive");
             RenderSettings.ambientLight = Color.black;
@@ -15,6 +17,8 @@ namespace Assets.Scripts
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             _arbieMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<ArbieMaster>();
+
+
         }
 	
         void Update ()
@@ -24,12 +28,21 @@ namespace Assets.Scripts
 
             if (WorldStorage.IsPaused)
             {
+                Time.timeScale = 0;
+                _wasJustPaused = true;
+                PublicReferenceList.LeapController.SetActive(false);
                 PublicReferenceList.Menu.SetActive(true);
+            }
+            if(!WorldStorage.IsPaused && _wasJustPaused){
+                _wasJustPaused = false;
+                Time.timeScale = 1;
+                PublicReferenceList.LeapController.SetActive(true);
             }
             if (WorldStorage.IsDebugOpen)
             {
                 PublicReferenceList.DebugMenu.SetActive(true);
             }
+
         }
 
         public void UpdateWayPoint(Vector3 tapPosition)

@@ -28,10 +28,9 @@ namespace Assets.Scripts
 
         private void Update()
         {
-            if (KeyTapIsEnabled)
-            {
-                Controller.EnableGesture(Gesture.GestureType.TYPE_KEY_TAP, KeyTapIsEnabled);
-            }
+            Controller.EnableGesture(Gesture.GestureType.TYPE_KEY_TAP, KeyTapIsEnabled);
+            Controller.EnableGesture(Gesture.GestureType.TYPE_SWIPE, IsPaused);
+
             Frame = Controller.Frame();
             InteractionBox = Frame.InteractionBox;
             Hand = Frame.Hands[0];

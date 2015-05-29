@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.Remoting.Messaging;
+using UnityEngine;
 using Leap;
 using UnityEditorInternal;
 
@@ -43,6 +44,12 @@ namespace Assets.Scripts
                 WorldStorage.IsPaused = true;
             }
 
+            if (WorldStorage.IsPaused)
+            {
+                SwipeActioner();
+                return;
+            }
+
             _worldStorage.State = HandModeCalculator(_hand);
 
             if (_state == "pointing")
@@ -84,6 +91,18 @@ namespace Assets.Scripts
             if (isPointing) state = "pointing";
 
             return state;
+        }
+
+        private void SwipeActioner()
+        {
+            GestureList gestureList = _frame.Gestures();
+            bool hasSwiped = (gestureList[0].Type == Gesture.GestureType.TYPE_SWIPE);
+            if (hasSwiped)
+            {
+                SwipeGesture swipe = new SwipeGesture(gestureList[0]);
+
+                Debug.Log("Swipe: " + swipe.Direction);
+            }
         }
     }
 
