@@ -7,6 +7,7 @@ namespace Assets.Scripts
     {
         private NavMeshAgent _arbieNavMeshAgent;
         private ArbieMaster _arbieMaster;
+        private NavMeshPath _currentPath;
 
         void Start()
         {
@@ -22,7 +23,8 @@ namespace Assets.Scripts
 
         internal void CreatePath(NavMeshPath path)
         {
-            _arbieNavMeshAgent.SetPath(path);
+            _currentPath = path;
+            _arbieNavMeshAgent.SetPath(_currentPath);
         }
 
         internal void ClearPath()

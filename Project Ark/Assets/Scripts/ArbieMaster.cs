@@ -17,6 +17,8 @@ namespace Assets.Scripts
             _arbie = PublicReferenceList.Character;
             _arbieAgent = _arbie.GetComponent<NavMeshAgent>();
             _arbieController = _arbie.GetComponent<ArbieController>();
+
+            _arbieAgent.enabled = false;
         }
 
         void Update()
@@ -26,6 +28,7 @@ namespace Assets.Scripts
                 StartCoroutine(WaitFor(5));
                 _hasBeenThrown = false;
                 _arbieAgent.enabled = !WorldStorage.CompletedWayPoint;
+                _arbieController.CreatePath(_path);
             }
             ConditionsOnPosition();
         }
@@ -50,6 +53,7 @@ namespace Assets.Scripts
         internal void MoveCharacterToWayPoint(Vector3 destination)
         {
             _arbieAgent.enabled = true;
+            _path = new NavMeshPath();
             _arbieAgent.CalculatePath(destination, _path);
             Debug.Log("path: " + _path.ToString());
             if (_path.status == NavMeshPathStatus.PathInvalid || _path.status == NavMeshPathStatus.PathPartial)

@@ -6,7 +6,7 @@ namespace Assets.Scripts
     internal class StateInstructioner : MonoBehaviour {
         private PublicReferenceList _publicReferenceList;
         private PlayerController _playerController;
-        private ArbieMaster _characterMaster;
+        private ArbieMaster _arbieMaster;
 
         void Start () {
 	        Debug.Log("StateInstructioner Is Alive");
@@ -14,7 +14,7 @@ namespace Assets.Scripts
 
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            _characterMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<ArbieMaster>();
+            _arbieMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<ArbieMaster>();
         }
 	
         void Update ()
@@ -35,7 +35,7 @@ namespace Assets.Scripts
         public void UpdateWayPoint(Vector3 tapPosition)
         {
             WaypointController.WayPointMaster(tapPosition);
-            _characterMaster.MoveCharacterToWayPoint(WorldStorage.WayPointPosition);
+            _arbieMaster.MoveCharacterToWayPoint(WorldStorage.WayPointPosition);
             Debug.Log("Set Way Point");
         }
 
