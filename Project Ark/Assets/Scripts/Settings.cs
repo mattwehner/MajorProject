@@ -18,6 +18,7 @@ namespace Assets.Scripts
             internal static float MinHandHeight = 0.1f;
             internal static float CharacterRecoverVelocity = 0.1f;
             internal static float DistanceRemainingToWayPoint = 0.01f;
+            internal static float SwipeQualifier = 0.3f;
         }
     }
 }

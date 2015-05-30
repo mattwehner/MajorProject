@@ -11,7 +11,7 @@ namespace Assets.Scripts
             Debug.Log("WaypointController is Alive");
         }
         
-        public static void WayPointMaster(Vector3 tapPosition)
+        public static void Create(Vector3 tapPosition)
         {
             WayPointCreator(tapPosition);
         }
@@ -37,9 +37,11 @@ namespace Assets.Scripts
             WorldStorage.CompletedWayPoint = false;
         }
 
-        public void RemoveWayPoint()
+        public static void Delete()
         {
+            Vector3 emptyVector = new Vector3(0,0,0);
             Destroy(_publicReferenceList.CurrentMarker);
+            WorldStorage.WayPointPosition = emptyVector;
         }
 
         private static Vector3 FindMarkerHeight(Vector3 startPosition)

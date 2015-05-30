@@ -44,10 +44,14 @@ namespace Assets.Scripts
             }
 
         }
-
+        public void ClearWayPoint()
+        {
+            WaypointController.Delete();
+            _arbieMaster.WayPointRequestCompleted();
+        }
         public void UpdateWayPoint(Vector3 tapPosition)
         {
-            WaypointController.WayPointMaster(tapPosition);
+            WaypointController.Create(tapPosition);
             _arbieMaster.MoveCharacterToWayPoint(WorldStorage.WayPointPosition);
             Debug.Log("Set Way Point");
         }

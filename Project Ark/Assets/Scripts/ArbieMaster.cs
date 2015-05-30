@@ -70,6 +70,12 @@ namespace Assets.Scripts
             }
         }
 
+        internal void WayPointRequestCompleted()
+        {
+            _arbieController.ClearPath();
+            WorldStorage.CompletedWayPoint = true;
+        }
+
         IEnumerator WaitFor(float waitPeriod)
         {
             yield return new WaitForSeconds(waitPeriod);

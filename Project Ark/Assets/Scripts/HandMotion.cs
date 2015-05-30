@@ -95,13 +95,17 @@ namespace Assets.Scripts
 
         private void SwipeActioner()
         {
+            var swipeQualifier = Settings.Game.SwipeQualifier;
             GestureList gestureList = _frame.Gestures();
             bool hasSwiped = (gestureList[0].Type == Gesture.GestureType.TYPE_SWIPE);
             if (hasSwiped)
             {
-                SwipeGesture swipe = new SwipeGesture(gestureList[0]);
-
-                Debug.Log("Swipe: " + swipe.Direction);
+                var swipeDirection = new SwipeGesture(gestureList[0]).Direction;
+                if (swipeDirection.x > swipeQualifier || swipeDirection.x < -swipeQualifier &&
+                    swipeDirection.y < swipeQualifier && swipeDirection.y > -swipeQualifier)
+                {
+                    _stateInstructioner.ClearWayPoint();
+                }
             }
         }
     }
