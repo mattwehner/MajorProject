@@ -17,8 +17,6 @@ namespace Assets.Scripts
             _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
             _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
             _arbieMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<ArbieMaster>();
-
-
         }
 	
         void Update ()
@@ -46,6 +44,7 @@ namespace Assets.Scripts
         }
         public void ClearWayPoint()
         {
+            if (!_publicReferenceList.CurrentMarker) return;
             WaypointController.Delete();
             _arbieMaster.WayPointRequestCompleted();
         }

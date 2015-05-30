@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
+
 
 namespace Assets.Scripts
 {
@@ -13,6 +15,8 @@ namespace Assets.Scripts
         public Button DebugApplyButton;
         public Button DebugRevertButton;
         public Button DebugRestoreButton;
+        public Image CloseMenuButton;
+        public Image Cursor;
         public GameObject Object;
         public GameObject CurrentMarker;
         public GameObject WayPointPrefab;

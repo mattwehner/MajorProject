@@ -19,6 +19,8 @@ namespace Assets.Scripts
             internal static float CharacterRecoverVelocity = 0.1f;
             internal static float DistanceRemainingToWayPoint = 0.01f;
             internal static float SwipeQualifier = 0.3f;
+            internal static float VerticalSensitivity = 1.5f;
+            internal static float HorizontalSensitivity = 1.5f;
         }
     }
 }
