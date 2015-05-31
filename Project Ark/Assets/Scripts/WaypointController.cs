@@ -5,21 +5,29 @@ namespace Assets.Scripts
 {
     public class WaypointController : MonoBehaviour
     {
-        private static PublicReferenceList _publicReferenceList;
+        // ReSharper disable once InconsistentNaming
+        public static WaypointController waypointController;
+        private PublicReferenceList _publicReferenceList;
 
+        void Awake()
+        {
+            waypointController = this;
+            
+        }
         void Start () {
             Debug.Log("WaypointController is Alive");
+            _publicReferenceList = PublicReferenceList.publicReferenceList;
         }
         
-        public static void Create(Vector3 tapPosition)
+        public void Create(Vector3 tapPosition)
         {
             WayPointCreator(tapPosition);
         }
 
-        private static void WayPointCreator(Vector3 tapPosition)
+        private void WayPointCreator(Vector3 tapPosition)
         {
             
-            _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
+            _publicReferenceList = PublicReferenceList.publicReferenceList;
 
             Vector3 tapCoords = FindMarkerHeight(tapPosition);
 
@@ -33,18 +41,18 @@ namespace Assets.Scripts
                 _publicReferenceList.CurrentMarker.transform.position = tapCoords;
             }
 
-            WorldStorage.WayPointPosition = tapCoords;
-            WorldStorage.CompletedWayPoint = false;
+            WorldStorage.worldStorage.WayPointPosition = tapCoords;
+            WorldStorage.worldStorage.CompletedWayPoint = false;
         }
 
-        public static void Delete()
+        public void Delete()
         {
             Vector3 emptyVector = new Vector3(0,0,0);
             Destroy(_publicReferenceList.CurrentMarker);
-            WorldStorage.WayPointPosition = emptyVector;
+            WorldStorage.worldStorage.WayPointPosition = emptyVector;
         }
 
-        private static Vector3 FindMarkerHeight(Vector3 startPosition)
+        private Vector3 FindMarkerHeight(Vector3 startPosition)
         {
             var newCoords = startPosition;
 

@@ -8,32 +8,35 @@ namespace Assets.Scripts
     public class MenuController : MonoBehaviour
     {
         private WorldStorage _worldStorage;
-        private PublicReferenceList _publicReferenceList;
         private Frame _frame;
-        private Image _cursor;
-        private Image _button;
+
+        public Image _cursor;
+        public Image _button;
         private Color _defaultColor;
         private Color _hoverColor;
         private Color _activeColor;
 
         void Start () {
             Debug.Log("MenuController Is Alive");
-            _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
-            _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
-            _cursor = _publicReferenceList.Cursor;
-            _button = _publicReferenceList.CloseMenuButton;
+            _worldStorage = WorldStorage.worldStorage;
             _defaultColor = _button.color;
             _hoverColor = Color.green;
             _activeColor = Color.blue;
         }
 	
-        void Update () {
+        void Update ()
+        {
             //Checks to see if it is active when game is not paused
-            if (PublicReferenceList.Menu.activeSelf & !WorldStorage.IsPaused) CloseMenu();
-
+            if (PublicReferenceList.Menu.activeSelf & !_worldStorage.IsPaused)
+            {
+                CloseMenu();
+                return;
+            }
+            if (_worldStorage.IsPaused) { 
             _frame = _worldStorage.Frame;
             CursorControler(_frame);
             CursorActioner(_frame.Hands[0]);
+            }
         }
 
         public void CloseMenu()
@@ -65,7 +68,6 @@ namespace Assets.Scripts
         private void CursorActioner(Hand hand)
         {
             var cursorPosition = _cursor.transform.position;
-            var handPosition = hand.StabilizedPalmPosition;
             var w = 135;
             var h = 80;
             var bP = _button.transform.position;
@@ -81,7 +83,7 @@ namespace Assets.Scripts
             if (isHovering && isGrabbing || isHovering && Input.GetMouseButtonUp(0))
             {
                 _button.color = _activeColor;
-                WorldStorage.IsPaused = false;
+                _worldStorage.IsPaused = false;
             }
             _button.color = (isHovering) ? _hoverColor : _defaultColor;
         }

@@ -4,6 +4,14 @@ namespace Assets.Scripts
 {
     public class PlayerController : MonoBehaviour
     {
+        // ReSharper disable once InconsistentNaming
+        public static PlayerController playerController;
+        void Awake()
+        {
+            playerController = this;
+
+        }
+
         void Start () {
             Debug.Log("CameraController Is Alive");
         }

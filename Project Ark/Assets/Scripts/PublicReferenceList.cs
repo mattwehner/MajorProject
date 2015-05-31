@@ -7,27 +7,28 @@ namespace Assets.Scripts
 {
     public class PublicReferenceList : MonoBehaviour
     {
+        // ReSharper disable once InconsistentNaming
+        public static PublicReferenceList publicReferenceList;
+
         public static GameObject Character;
         public GameObject Player;
         public static GameObject LeapController;
         public static GameObject Menu;
         public static GameObject DebugMenu;
-        public Button DebugApplyButton;
-        public Button DebugRevertButton;
-        public Button DebugRestoreButton;
-        public Image CloseMenuButton;
-        public Image Cursor;
-        public GameObject Object;
         public GameObject CurrentMarker;
         public GameObject WayPointPrefab;
 
-        void Start()
+        void Awake()
         {
             Debug.Log("PublicReferenceList Is Alive");
+            publicReferenceList = this;
+
+            Character = GameObject.FindGameObjectWithTag("Arbie");
+            Player = GameObject.FindGameObjectWithTag("Player");
             LeapController = GameObject.FindGameObjectWithTag("LeapController");
             Menu = GameObject.FindGameObjectWithTag("Menu");
             DebugMenu = GameObject.FindGameObjectWithTag("DebugMenu");
-            Character = GameObject.FindGameObjectWithTag("Arbie");
+
         }
     }
 

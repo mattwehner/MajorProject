@@ -3,40 +3,53 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    internal class StateInstructioner : MonoBehaviour {
+    internal class StateInstructioner : MonoBehaviour
+    {
+        // ReSharper disable once InconsistentNaming
+        internal static StateInstructioner stateInstructioner;
+
+        private WorldStorage _worldStorage;
         private PublicReferenceList _publicReferenceList;
         private PlayerController _playerController;
         private ArbieMaster _arbieMaster;
+        private WaypointController _waypointController;
 
         private bool _wasJustPaused;
+
+        void Awake()
+        {
+            stateInstructioner = this;
+        }
 
         void Start () {
 	        Debug.Log("StateInstructioner Is Alive");
             RenderSettings.ambientLight = Color.black;
 
-            _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
-            _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-            _arbieMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<ArbieMaster>();
+            _worldStorage = WorldStorage.worldStorage;
+            _publicReferenceList = PublicReferenceList.publicReferenceList;
+            _playerController = PlayerController.playerController;
+            _arbieMaster = ArbieMaster.arbieMaster;
+            _waypointController = WaypointController.waypointController;
         }
 	
         void Update ()
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) WorldStorage.IsPaused = !WorldStorage.IsPaused;
-            if (Input.GetKeyDown(KeyCode.Tab)) WorldStorage.IsDebugOpen = !WorldStorage.IsDebugOpen;
+            if (Input.GetKeyDown(KeyCode.Escape)) _worldStorage.IsPaused = !_worldStorage.IsPaused;
+            if (Input.GetKeyDown(KeyCode.Tab)) _worldStorage.IsDebugOpen = !_worldStorage.IsDebugOpen;
 
-            if (WorldStorage.IsPaused)
+            if (_worldStorage.IsPaused)
             {
                 Time.timeScale = 0;
                 _wasJustPaused = true;
                 PublicReferenceList.LeapController.SetActive(false);
                 PublicReferenceList.Menu.SetActive(true);
             }
-            if(!WorldStorage.IsPaused && _wasJustPaused){
+            if(!_worldStorage.IsPaused && _wasJustPaused){
                 _wasJustPaused = false;
                 Time.timeScale = 1;
                 PublicReferenceList.LeapController.SetActive(true);
             }
-            if (WorldStorage.IsDebugOpen)
+            if (_worldStorage.IsDebugOpen)
             {
                 PublicReferenceList.DebugMenu.SetActive(true);
             }
@@ -45,13 +58,13 @@ namespace Assets.Scripts
         public void ClearWayPoint()
         {
             if (!_publicReferenceList.CurrentMarker) return;
-            WaypointController.Delete();
+            _waypointController.Delete();
             _arbieMaster.WayPointRequestCompleted();
         }
         public void UpdateWayPoint(Vector3 tapPosition)
         {
-            WaypointController.Create(tapPosition);
-            _arbieMaster.MoveCharacterToWayPoint(WorldStorage.WayPointPosition);
+            _waypointController.Create(tapPosition);
+            _arbieMaster.MoveCharacterToWayPoint(_worldStorage.WayPointPosition);
             Debug.Log("Set Way Point");
         }
 
@@ -60,11 +73,11 @@ namespace Assets.Scripts
             _playerController.BoundryMovementMaster(direction);
         }
 
-        public static void ArbieExclamation(string exclamation)
+        public  void ArbieExclamation(string exclamation)
         {
             if (exclamation == "way point reached")
             {
-                WorldStorage.CompletedWayPoint = true;
+                _worldStorage.CompletedWayPoint = true;
             }
         }
     }

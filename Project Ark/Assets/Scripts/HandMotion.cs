@@ -20,8 +20,8 @@ namespace Assets.Scripts
         {
             Debug.Log("HandMotion Is Alive");
 
-            _worldStorage = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<WorldStorage>();
-            _stateInstructioner = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<StateInstructioner>();
+            _worldStorage = WorldStorage.worldStorage;
+            _stateInstructioner = StateInstructioner.stateInstructioner;
 
             _minHandHeight = Settings.Game.MinHandHeight;
         }
@@ -41,10 +41,10 @@ namespace Assets.Scripts
 
             if (handPosition.y < _minHandHeight)
             {
-                WorldStorage.IsPaused = true;
+                _worldStorage.IsPaused = true;
             }
 
-            if (WorldStorage.IsPaused)
+            if (_worldStorage.IsPaused)
             {
                 SwipeActioner();
                 return;

@@ -5,15 +5,22 @@ namespace Assets.Scripts
 {
     internal class ArbieController : MonoBehaviour
     {
-        private NavMeshAgent _arbieNavMeshAgent;
+        // ReSharper disable once InconsistentNaming
+        internal static ArbieController arbieController;
+        internal static NavMeshAgent ArbieNavMeshAgent;
+
         private ArbieMaster _arbieMaster;
         private NavMeshPath _currentPath;
+        void Awake()
+        {
+            arbieController = this;
 
+        }
         void Start()
         {
             Debug.Log("CharacterController Is Alive");
-            _arbieMaster = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<ArbieMaster>();
-            _arbieNavMeshAgent = this.gameObject.GetComponent<NavMeshAgent>();
+            _arbieMaster = ArbieMaster.arbieMaster;
+            ArbieNavMeshAgent = gameObject.GetComponent<NavMeshAgent>();
         }
 
         void OnCollisionEnter(Collision collision)
@@ -24,12 +31,12 @@ namespace Assets.Scripts
         internal void CreatePath(NavMeshPath path)
         {
             _currentPath = path;
-            _arbieNavMeshAgent.SetPath(_currentPath);
+            ArbieNavMeshAgent.SetPath(_currentPath);
         }
 
         internal void ClearPath()
         {
-            _arbieNavMeshAgent.ResetPath();
+            ArbieNavMeshAgent.ResetPath();
         }
     }
 }

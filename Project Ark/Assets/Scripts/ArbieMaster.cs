@@ -5,18 +5,28 @@ namespace Assets.Scripts
 {
     public class ArbieMaster : MonoBehaviour
     {
+        // ReSharper disable once InconsistentNaming
+        public static ArbieMaster arbieMaster;
+
+        private WorldStorage _worldStorage;
         private ArbieController _arbieController;
         private GameObject _arbie;
         private NavMeshAgent _arbieAgent;
         private NavMeshPath _path;
 
         private bool _hasBeenThrown;
+        void Awake()
+        {
+            arbieMaster = this;
+
+        }
         void Start () {
             Debug.Log("CharacterMaster Is Alive");
+            _worldStorage = WorldStorage.worldStorage;
 
             _arbie = PublicReferenceList.Character;
-            _arbieAgent = _arbie.GetComponent<NavMeshAgent>();
-            _arbieController = _arbie.GetComponent<ArbieController>();
+            _arbieController = ArbieController.arbieController;
+            _arbieAgent = ArbieController.ArbieNavMeshAgent;
 
             _arbieAgent.enabled = false;
         }
@@ -27,8 +37,8 @@ namespace Assets.Scripts
             {
                 StartCoroutine(WaitFor(5));
                 _hasBeenThrown = false;
-                _arbieAgent.enabled = !WorldStorage.CompletedWayPoint;
-                if (!WorldStorage.CompletedWayPoint)
+                _arbieAgent.enabled = !_worldStorage.CompletedWayPoint;
+                if (!_worldStorage.CompletedWayPoint)
                 {
                     _arbieController.CreatePath(_path);
                 }
@@ -39,11 +49,11 @@ namespace Assets.Scripts
 
         private void ConditionsOnPosition()
         {
-            if (WorldStorage.CompletedWayPoint) return;
+            if (WorldStorage.worldStorage.CompletedWayPoint) return;
             if (Vector3.Distance(_arbie.transform.position, _arbieAgent.destination) <=
                 Settings.Game.DistanceRemainingToWayPoint)
             {
-                StateInstructioner.ArbieExclamation("way point reached");
+                StateInstructioner.stateInstructioner.ArbieExclamation("way point reached");
             }
         }
 
@@ -73,7 +83,7 @@ namespace Assets.Scripts
         internal void WayPointRequestCompleted()
         {
             _arbieController.ClearPath();
-            WorldStorage.CompletedWayPoint = true;
+            _worldStorage.CompletedWayPoint = true;
         }
 
         IEnumerator WaitFor(float waitPeriod)

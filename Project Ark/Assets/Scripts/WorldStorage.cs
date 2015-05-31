@@ -5,24 +5,30 @@ namespace Assets.Scripts
 {
     public class WorldStorage : MonoBehaviour
     {
+        // ReSharper disable once InconsistentNaming
+        public static WorldStorage worldStorage;
+
         internal Controller Controller;
         internal Frame Frame;
         internal InteractionBox InteractionBox;
         internal Hand Hand;
 
-        internal static bool IsPaused;
-        internal static bool IsDebugOpen;
+        internal bool IsPaused = false;
+        internal bool IsDebugOpen = false;
         internal bool KeyTapIsEnabled = false;
         internal string State;
 
-        internal static Vector3 WayPointPosition { get; set; }
-        internal static bool CompletedWayPoint = true;
+        internal Vector3 WayPointPosition { get; set; }
+        internal bool CompletedWayPoint = true;
 
+        void Awake()
+        {
+            worldStorage = this;
+        }
 
         private void Start()
         {
             Debug.Log("WorldStorage Is Alive");
-
             Controller = new Controller();
         }
 

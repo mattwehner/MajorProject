@@ -5,7 +5,6 @@ namespace Assets.Scripts
 {
     public class DebugController : MonoBehaviour
     {
-        private PublicReferenceList _publicReferenceList;
         private Button _applyButton;
         private Button _revertButton;
         private Button _restoreButton;
@@ -23,10 +22,9 @@ namespace Assets.Scripts
         void Start () {
 	        Debug.Log("DebugSettingOptions is Alive");
 
-            _publicReferenceList = GameObject.FindGameObjectWithTag("WorldManager").GetComponent<PublicReferenceList>();
-            _applyButton = _publicReferenceList.DebugApplyButton;
-            _revertButton = _publicReferenceList.DebugRevertButton;
-            _restoreButton = _publicReferenceList.DebugRestoreButton;
+            _applyButton = transform.FindChild("ApplyButton").GetComponent<Button>();
+            _revertButton = transform.FindChild("RevertButton").GetComponent<Button>();
+            _restoreButton = transform.FindChild("RestoreButton").GetComponent<Button>();
 
             StoreSettings();
         }
@@ -34,7 +32,7 @@ namespace Assets.Scripts
         void Update()
         {
             //Checks to see if it is accidentaly active
-            if (PublicReferenceList.DebugMenu.activeSelf & !WorldStorage.IsDebugOpen)
+            if (PublicReferenceList.DebugMenu.activeSelf & !WorldStorage.worldStorage.IsDebugOpen)
             {
                 PublicReferenceList.DebugMenu.SetActive(false);
             }
