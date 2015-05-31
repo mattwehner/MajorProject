@@ -11,7 +11,8 @@ namespace Assets.Scripts
         private Frame _frame;
 
         public Image _cursor;
-        public Image _button;
+        public Image _closeMenu;
+        public Image _nextLevel;
         private Color _defaultColor;
         private Color _hoverColor;
         private Color _activeColor;
@@ -19,7 +20,7 @@ namespace Assets.Scripts
         void Start () {
             Debug.Log("MenuController Is Alive");
             _worldStorage = WorldStorage.worldStorage;
-            _defaultColor = _button.color;
+            _defaultColor = _closeMenu.color;
             _hoverColor = Color.green;
             _activeColor = Color.blue;
         }
@@ -68,24 +69,53 @@ namespace Assets.Scripts
         private void CursorActioner(Hand hand)
         {
             var cursorPosition = _cursor.transform.position;
+            //magic number based on image size. Needs refactoring
             var w = 135;
             var h = 80;
-            var bP = _button.transform.position;
-
-            bool isHovering = (
-                cursorPosition.x > (bP.x - w) &&
-                cursorPosition.x < (bP.x + w) &&
-                cursorPosition.y > (bP.y - h) &&
-                cursorPosition.y < (bP.y + h));
-
+            var cursor = _cursor.transform.position;
+            var cM = _closeMenu.transform.position;
+            var nL = _nextLevel.transform.position;
             bool isGrabbing = (hand.GrabStrength > 0.7);
 
-            if (isHovering && isGrabbing || isHovering && Input.GetMouseButtonUp(0))
+            if (IsHovering(cursor, cM, w, h))
             {
-                _button.color = _activeColor;
-                _worldStorage.IsPaused = false;
+                _closeMenu.color = _hoverColor;
+                if (isGrabbing || Input.GetMouseButtonUp(0))
+                {
+                    _closeMenu.color = _activeColor;
+                    _worldStorage.IsPaused = false;
+                    return;
+                }
             }
-            _button.color = (isHovering) ? _hoverColor : _defaultColor;
+            else
+            {
+                _closeMenu.color = _defaultColor;
+            }
+            if (IsHovering(cursor, nL, w, h))
+            {
+                _nextLevel.color = _hoverColor;
+                if (isGrabbing || Input.GetMouseButtonUp(0))
+                {
+                    var level = (Application.loadedLevel == 0) ? 1 : 0;
+                    _nextLevel.color = _activeColor;
+                    _worldStorage.IsPaused = false;
+                    Time.timeScale = 1;
+                    Application.LoadLevel(level);
+                }
+            }
+            else
+            {
+                _nextLevel.color = _defaultColor;
+            }
+        }
+
+        private bool IsHovering(Vector3 cursor, Vector3 element, int width, int height)
+        {
+            return (
+                cursor.x > (element.x - width) &&
+                cursor.x < (element.x + width) &&
+                cursor.y > (element.y - height) &&
+                cursor.y < (element.y + height)); ;
         }
     }
 }

@@ -18,12 +18,22 @@ namespace Assets.Scripts
         internal bool KeyTapIsEnabled = false;
         internal string State;
 
+        public int DebugValue = 100;
+
         internal Vector3 WayPointPosition { get; set; }
         internal bool CompletedWayPoint = true;
 
         void Awake()
         {
-            worldStorage = this;
+            //if (worldStorage == null)
+            //{
+            //    DontDestroyOnLoad(gameObject);
+                worldStorage = this;
+            //}
+            //else if (worldStorage != this)
+            //{
+            //    Destroy(gameObject);
+            //}
         }
 
         private void Start()
