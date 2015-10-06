@@ -136,6 +136,7 @@
     <Compile Include="Assets\Resources\Scripts\Controllers\UIController.cs" />
     <Compile Include="Assets\Resources\Scripts\Controllers\WaypointController.cs" />
     <Compile Include="Assets\Resources\Scripts\HiResScreenShots.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interfaces\ICursor.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\IInteractable.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\IMenu.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\IPowered.cs" />

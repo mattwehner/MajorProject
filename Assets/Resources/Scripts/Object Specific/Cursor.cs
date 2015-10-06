@@ -5,15 +5,15 @@ using Assets.Scripts;
 using Leap;
 using UnityEngine.UI;
 
-public class Cursor : MonoBehaviour
+public class Cursor : MonoBehaviour, ICursor
 {
     public GameObject Outer;
     public GameObject Inner;
     private RawImage _outerRawImage;
     private RawImage _innerRawImage;
 
-    private float _grabStrength;
-    public static bool _isGrabbing;
+    public float GrabStrength { get; set; }
+    public bool IsGrabbing { get; set; }
 
     private float _widthOffset;
     private float _heightOffset;
@@ -30,20 +30,20 @@ public class Cursor : MonoBehaviour
     void FixedUpdate()
     {
         Controller controller = HandMotionController.Instance.Controller;
-        _grabStrength = controller.Frame().Hands[0].GrabStrength;
+        GrabStrength = controller.Frame().Hands[0].GrabStrength;
 
         transform.position = CalculateCursorPosition(controller);
 
-        var scaler = Mathf.Clamp((float)((-0.00549 * (_grabStrength * 100)) + 0.50549),0.15f, 0.5f);
+        var scaler = Mathf.Clamp((float)((-0.00549 * (GrabStrength * 100)) + 0.50549),0.15f, 0.5f);
         Outer.transform.localScale = new Vector3(scaler,scaler,scaler);
-        _isGrabbing = (scaler < 0.17);
+        IsGrabbing = (scaler < 0.17);
 
-        if (_isGrabbing)
+        if (IsGrabbing)
         {
             _outerRawImage.color = Color.green;
             _innerRawImage.color = Color.green;
         }
-        if (!_isGrabbing && _innerRawImage.color == Color.green)
+        if (!IsGrabbing && _innerRawImage.color == Color.green)
         {
             _outerRawImage.color = Color.white;
             _innerRawImage.color = Color.white;
@@ -56,11 +56,16 @@ public class Cursor : MonoBehaviour
         var interactionBox = controller.Frame().InteractionBox;
         var handPosition = controller.Frame().Hands[0].StabilizedPalmPosition;
         Vector leapHandPosition = interactionBox.NormalizePoint(handPosition);
-        Vector2 newCursorPosition = new Vector3(((leapHandPosition.x) * _widthOffset), (leapHandPosition.y * _heightOffset), -10);
+
+        float curserX = ((leapHandPosition.x)*_widthOffset);
+        float restrictX = Mathf.Clamp(curserX, 0, UnityEngine.Screen.width);
+        float curserY = (leapHandPosition.y * _heightOffset);
+        float restrictY = Mathf.Clamp(curserY, 0, UnityEngine.Screen.height);
+        Vector2 newCursorPosition = new Vector2(restrictX, restrictY);
 
         if (controller.Frame().Hands.IsEmpty)
         {
-            _grabStrength = (Input.GetMouseButton(0)) ? 1 : 0;
+            GrabStrength = (Input.GetMouseButton(0)) ? 1 : 0;
         }
 
         return (controller.Frame().Hands.IsEmpty)?mousePosition: newCursorPosition;
@@ -68,9 +73,10 @@ public class Cursor : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (_isGrabbing)
+        if (IsGrabbing)
         {
-            collider.GetComponent<IUiButton>().ButtonAction();
+            IUiButton _iUiButton = collider.GetComponent<IUiButton>();
+            if(_iUiButton != null)_iUiButton.ButtonAction();
         }
     }
 }

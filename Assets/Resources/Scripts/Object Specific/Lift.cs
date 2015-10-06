@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using Assets.Resources.Scripts.Controllers;
+﻿using Assets.Resources.Scripts.Controllers;
 using Assets.Resources.Scripts.Interfaces;
-using Assets.Resources.Scripts.Object_Specific.Slaves;
 using Assets.Resources.Scripts.Storage;
 using Assets.Scripts;
 using Assets.Scripts.Object_Specific;
@@ -43,7 +41,6 @@ namespace Assets.Resources.Scripts.Object_Specific
             InteractionBounds.SetActive(false);
 
             _startCoordinates = transform.localPosition;
-            print("Start Coordinates: " + _startCoordinates);
         }
 
         void Update()
@@ -76,18 +73,26 @@ namespace Assets.Resources.Scripts.Object_Specific
             if (collider.name.StartsWith("bone"))
             {
                 HandMotionController.Instance.SetCollider(false, null);
-                InteractionBounds.SetActive(false);
             }
+            InteractionBounds.SetActive(false);
         }
 
         public void Activate()
         {
-            if (!_uiPanel)
+            if (PoweredOn)
             {
-                _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/Lift_Menu")) as GameObject;
-                _uiPanel.transform.SetParent(UIController.Instance.gameObject.transform, false);
-                _uiPanel.transform.SetAsFirstSibling();
-                _uiPanel.GetComponent<UIPanel>().Owner = gameObject.GetComponent<IUiOwner>();
+                if (!_uiPanel)
+                {
+                    _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/Lift_Menu")) as GameObject;
+                    _uiPanel.transform.SetParent(UIController.Instance.gameObject.transform, false);
+                    _uiPanel.transform.SetAsFirstSibling();
+                    _uiPanel.GetComponent<UIPanel>().Owner = gameObject.GetComponent<IUiOwner>();
+                    InteractionBounds.SetActive(false);
+                }
+            }
+            else
+            {
+                print("This Lift is currently out of order");
             }
         }
 

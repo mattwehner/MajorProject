@@ -73,8 +73,9 @@ namespace Assets.Scripts
 
             if (inCollider && Triggering != null)
             {
-                Triggering.GetComponent<IInteractable>().Activate();
-                UIController.Instance.CursorModeOn(true);
+                IInteractable interactable = Triggering.GetComponent<IInteractable>();
+                interactable.Activate();
+                UIController.Instance.CursorModeOn(interactable.PoweredOn);
             }
         }
 
