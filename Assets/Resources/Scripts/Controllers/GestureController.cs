@@ -14,6 +14,7 @@ namespace Assets.Scripts
         public GameObject SetCursorMenu;
         public GameObject SelectCursor;
         private IMenuActioner _iMenuActioner;
+        private HandController _handController;
 
         private Frame _storedFrame;
 
@@ -45,9 +46,12 @@ namespace Assets.Scripts
             {
                 SelectCursor.transform.localPosition = CalculateCursorPosition();
                 SetCursorMenu.SetActive(true);
-                HandController handController = GameObject.FindGameObjectWithTag("GameController").GetComponent<HandController>();
-                    handController.DestroyAllHands();
-                handController.enabled = false;
+                if (_handController == null)
+                {
+                    _handController = GameObject.FindGameObjectWithTag("GameController").GetComponent<HandController>();
+                }
+                _handController.DestroyAllHands();
+                _handController.enabled = false;
                 
                 if (_iMenuActioner.SwitchCursor)
                 {
@@ -57,6 +61,12 @@ namespace Assets.Scripts
                 }
                 return 0;
             }
+            if (_handController != null)
+            {
+                _handController.enabled = true;
+            }
+            SetCursorMenu.SetActive(false);
+            _iMenuActioner.SwitchCursor = false;
 
             return HasSelectedCheck() ? 1 : 0;
         }
