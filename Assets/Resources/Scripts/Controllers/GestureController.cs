@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using Assets.Resources.Scripts.Controllers;
+using Assets.Resources.Scripts.Interfaces;
 using Leap;
 using UnityEngine;
 
@@ -8,16 +10,21 @@ namespace Assets.Scripts
     {
         private Frame _frame;
         private Hand _hand;
-        public GameObject AskMenu;
-        public GameObject MenuOption;
         public Camera Camera;
+        public GameObject SetCursorMenu;
+        public GameObject SelectCursor;
+        private IMenuActioner _iMenuActioner;
 
-       private Frame _storedFrame;
+        private Frame _storedFrame;
+
+        private float _widthOffset;
+        private float _heightOffset;
 
         void Awake()
         {
             _storedFrame = new Frame();
-            AskMenu.SetActive(false);
+            SetCursorMenu.SetActive(false);
+            _iMenuActioner = SetCursorMenu.GetComponent<IMenuActioner>();
         }
 
         void Update()
@@ -36,28 +43,22 @@ namespace Assets.Scripts
 
             if (ActivateCursorCheck())
             {
-                SetCursorCheckPositions();
+                SelectCursor.transform.localPosition = CalculateCursorPosition();
+                SetCursorMenu.SetActive(true);
+                HandController handController = GameObject.FindGameObjectWithTag("GameController").GetComponent<HandController>();
+                    handController.DestroyAllHands();
+                handController.enabled = false;
+                
+                if (_iMenuActioner.SwitchCursor)
+                {
+                    UIController.Instance.CursorModeOn(true);
+                    SetCursorMenu.SetActive(false);
+                    _iMenuActioner.SwitchCursor = false;
+                }
                 return 0;
             }
-            AskMenu.SetActive(false);
 
-            if (HasSelectedCheck())
-            {
-                return 1;
-            }
-
-            return 0;
-        }
-
-        private void SetCursorCheckPositions()
-        {
-            AskMenu.SetActive(true);
-            var pinky = _hand.Fingers.FingerType(Finger.FingerType.TYPE_PINKY)[0].TipPosition.ToUnityScaled();
-            var index = _hand.Fingers.FingerType(Finger.FingerType.TYPE_INDEX)[0].TipPosition.ToUnityScaled();
-            AskMenu.transform.position =
-                Camera.WorldToScreenPoint(transform.TransformPoint(new Vector3(pinky.x, pinky.y)));
-            MenuOption.transform.position =
-                Camera.WorldToScreenPoint(transform.TransformPoint(new Vector3(index.x, index.y)));
+            return HasSelectedCheck() ? 1 : 0;
         }
 
         private bool ActivateCursorCheck()
@@ -89,8 +90,18 @@ namespace Assets.Scripts
 
             bool now = (extendedFingers[0].Id == index.Id || extendedFingers[1].Id == index.Id)
                 && (extendedFingers.Count == 1);
-
             return (before && now);
+        }
+
+        private Vector2 CalculateCursorPosition()
+        {
+            var interactionBox = _frame.InteractionBox;
+            var handPosition = _frame.Hands[0].StabilizedPalmPosition;
+            Vector leapHandPosition = interactionBox.NormalizePoint(handPosition);
+            var x = (float)(211*(leapHandPosition.x -0.5))*2.5f;
+            var y = (float)(211* (leapHandPosition.y - 0.5)+0.2)*2.5f;
+
+            return new Vector2(x,y);
         }
     }
 }

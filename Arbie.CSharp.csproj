@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -137,6 +135,7 @@
     <Compile Include="Assets\Resources\Scripts\Controllers\WaypointController.cs" />
     <Compile Include="Assets\Resources\Scripts\HiResScreenShots.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\ICursor.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interfaces\IGrabable.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\IInteractable.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\IMenu.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\IPowered.cs" />
@@ -152,7 +151,8 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\OpenMenu.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\UIButton.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Terminal.cs" />
-    <Compile Include="Assets\Resources\Scripts\Object Specific\UIPanel.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\UI\MenuOption.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\UI\UIPanel.cs" />
     <Compile Include="Assets\Resources\Scripts\Settings.cs" />
     <Compile Include="Assets\Resources\Scripts\Storage\MaterialReferences.cs" />
   </ItemGroup>

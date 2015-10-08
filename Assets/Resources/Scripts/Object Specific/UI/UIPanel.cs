@@ -23,7 +23,11 @@ public class UIPanel : MonoBehaviour {
         _openPosition = transform.localPosition;
         ClosePosition = new Vector2(315, 0);
         _panelOpen = false;
-        
+    }
+    void DestroySelf()
+    {
+        gameObject.GetComponent<Animator>().Play("Panel_Big_Out");
+        Destroy(gameObject);
     }
 
     void Start()
@@ -50,18 +54,5 @@ public class UIPanel : MonoBehaviour {
     void OnTriggerExit2D()
     {
         Tab.texture = TabNormal;
-    }
-
-    void MoveToPosition()
-    {
-        Vector2 from = (_panelOpen) ? _openPosition : ClosePosition;
-        Vector2 to = (_panelOpen) ? ClosePosition : _openPosition;
-
-        transform.localPosition = Vector2.Lerp(from, to, Time.deltaTime);
-        if (Vector2.Distance(transform.localPosition, to) < 0.1)
-        {
-            _isTransitioning = false;
-            _panelOpen = !_panelOpen;
-        }
     }
 }

@@ -6,28 +6,15 @@ namespace Assets.Resources.Scripts.Object_Specific.Slaves
 {
     public class OpenMenu : MonoBehaviour, IMenuActioner
     {
-        private float _startTime;
-        public bool IsActive { get; set; }
+        public bool SwitchCursor { get; set; }
 
-        void Update()
+        void OnTriggerStay2D()  
         {
-            if (IsActive && (_startTime + 1 < Time.time))
-            {
-                UIController.Instance.CursorModeOn(true);
-            }
+            SwitchCursor = false;
         }
-
-        void OnTriggerEnter2D(Collider2D collider)
-        {
-            _startTime = Time.time;
-            IsActive = true;
-        }
-    
-
         void OnTriggerExit2D()
         {
-            _startTime = 0;
-            IsActive = false;
+            SwitchCursor = true;
         }
     }
 }

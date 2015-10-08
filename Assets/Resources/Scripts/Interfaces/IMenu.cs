@@ -2,6 +2,6 @@
 {
     public interface IMenuActioner
     {
-        bool IsActive { get; set; }
+        bool SwitchCursor { get; set; }
     }
 }

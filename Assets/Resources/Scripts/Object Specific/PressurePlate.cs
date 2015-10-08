@@ -6,12 +6,12 @@ namespace Assets.Scripts.Object_Specific
     public class PressurePlate : MonoBehaviour, IPowerer
     {
         public bool PowerOn { get; set; }
-        private Animation _animation;
+        private Animator _animator;
         private Material _material;
 
         void Awake()
         {
-            //_animation = GetComponent<Animation>();
+            _animator = GetComponent<Animator>();
             _material = GetComponent<Renderer>().material;
 
             _material.SetColor("_Color", new Color32(248, 47, 47, 255));
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Object_Specific
         {
             PowerOn = true;
             print(name + "was turned on");
-            //_animation.Play("pressure_plate_down");
+            _animator.Play("pressure_plate_down");
             _material.SetColor("_Color", new Color32(56, 204, 56, 255));
         }
 
@@ -34,7 +34,7 @@ namespace Assets.Scripts.Object_Specific
         {
             PowerOn = false;
             print(name + "was turned off");
-            //_animation.Play("pressure_plate_up");
+            _animator.Play("pressure_plate_up");
             _material.SetColor("_Color", new Color32(248, 47, 47, 255));
         }
     }

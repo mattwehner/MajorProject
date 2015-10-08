@@ -43,8 +43,7 @@ namespace Assets.Scripts
                 switch (_gestureController.Calculate())
                 {
                     case 0:
-                        return
-                            ;
+                        return;
                     case 1:
                         HasClicked();
                         break;
