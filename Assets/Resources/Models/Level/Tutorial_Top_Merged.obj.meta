@@ -11,27 +11,37 @@ ModelImporter:
     100006: default
     100008: Mesh1
     100010: PressurePlate
+    100012: Tutorial_Top_Merged:Mesh1
+    100014: Tutorial_Top_Merged:PressurePlate
     400000: Corridor_Support:Mesh1
     400002: Pressureplate:PressurePlate
     400004: //RootNode
     400006: default
     400008: Mesh1
     400010: PressurePlate
+    400012: Tutorial_Top_Merged:Mesh1
+    400014: Tutorial_Top_Merged:PressurePlate
     2300000: Corridor_Support:Mesh1
     2300002: Pressureplate:PressurePlate
     2300004: default
     2300006: Mesh1
     2300008: PressurePlate
+    2300010: Tutorial_Top_Merged:Mesh1
+    2300012: Tutorial_Top_Merged:PressurePlate
     3300000: Corridor_Support:Mesh1
     3300002: Pressureplate:PressurePlate
     3300004: default
     3300006: Mesh1
     3300008: PressurePlate
+    3300010: Tutorial_Top_Merged:Mesh1
+    3300012: Tutorial_Top_Merged:PressurePlate
     4300000: Corridor_Support:Mesh1
     4300002: Pressureplate:PressurePlate
     4300004: default
     4300006: Mesh1
     4300008: PressurePlate
+    4300010: Tutorial_Top_Merged:Mesh1
+    4300012: Tutorial_Top_Merged:PressurePlate
   materials:
     importMaterials: 1
     materialName: 0
@@ -88,8 +98,10 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
+    hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
+  humanoidOversampling: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

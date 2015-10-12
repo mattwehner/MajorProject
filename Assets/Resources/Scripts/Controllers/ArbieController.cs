@@ -1,4 +1,6 @@
-﻿using Assets.Resources.Scripts.Interfaces;
+﻿using System;
+using System.Collections;
+using Assets.Resources.Scripts.Interfaces;
 using Leap;
 using UnityEngine;
 
@@ -12,9 +14,10 @@ namespace Assets.Scripts
 
         private NavMeshAgent _navAgent;
         private Rigidbody _rigidbody;
-        private bool _unreachedWaypoint;
 
+        private bool _hasBeenThrown;
         private Controller _controller;
+
 
         void Awake()
         {
@@ -28,29 +31,34 @@ namespace Assets.Scripts
             _navAgent.enabled = false;
             _rigidbody = GetComponent<Rigidbody>();
             _rigidbody.isKinematic = false;
-            _unreachedWaypoint = false;
         }
         
         void Update()
         {
+            //if (_hasBeenThrown && (_rigidbody.velocity.magnitude <= Settings.Game.CharacterRecoverVelocity))
+            //{
+            //    StartCoroutine(WaitFor(5));
+            //    _hasBeenThrown = false;
+            //    _navAgent.enabled = true;
+            //}
+
+            throw new NotImplementedException();
+
             if (_navAgent.enabled && _navAgent.remainingDistance < 0.11)
             {
                 _navAgent.enabled = false;
                 _rigidbody.isKinematic = false;
                 WaypointController.Instance.Delete();
-            }   
+            }
         }
 
         void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.name.StartsWith("bone"))
+            if (collision.collider.name.Contains("bone"))
             {
-                var hand = collision.gameObject;
-                if (_controller == null)
-                {
-                    _controller = HandMotionController.Instance.Controller;
-                }
-                BeingGrabbed = (_controller.Frame().Hands[0].GrabStrength > 0.5);
+                _hasBeenThrown = true;
+                _navAgent.enabled = false;
+                _rigidbody.isKinematic = false;
             }
         }
 
@@ -59,7 +67,11 @@ namespace Assets.Scripts
             _navAgent.enabled = true;
             _rigidbody.isKinematic = true;
             _navAgent.destination = destination;
-            _unreachedWaypoint = true;
+        }
+
+        IEnumerator WaitFor(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
         }
     }
 }

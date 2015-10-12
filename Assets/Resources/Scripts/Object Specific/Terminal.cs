@@ -94,7 +94,6 @@ public class Terminal : MonoBehaviour, IInteractable, IPowered, IUiOwner
         else
         {
             _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/NoPowerWarning")) as GameObject;
-            ;
             _uiPanel.transform.SetParent(gameObject.transform, true);
             _uiPanel.transform.localPosition = Vector3.up *2;
             InteractionBounds.SetActive(false);
