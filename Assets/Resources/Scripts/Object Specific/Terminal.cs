@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Assets.Resources.Scripts.Controllers;
 using Assets.Resources.Scripts.Interfaces;
 using Assets.Resources.Scripts.Storage;
@@ -80,18 +81,35 @@ public class Terminal : MonoBehaviour, IInteractable, IPowered, IUiOwner
 
     public void Activate()
     {
-        if (!_uiPanel)
+        Destroy(_uiPanel);
+        if (PoweredOn)
         {
-            _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/" + TerminalUI)) as GameObject; ;
-            _uiPanel.transform.SetParent(UIController.Instance.gameObject.transform, false);
-            _uiPanel.transform.SetAsFirstSibling();
-            _uiPanel.GetComponent<UIPanel>().Owner = gameObject.GetComponent<IUiOwner>();
+                _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/" + TerminalUI)) as GameObject;
+                ;
+                _uiPanel.transform.SetParent(UIController.Instance.gameObject.transform, false);
+                _uiPanel.transform.SetAsFirstSibling();
+                _uiPanel.GetComponent<UIPanel>().Owner = gameObject.GetComponent<IUiOwner>();
+                InteractionBounds.SetActive(false);
+        }
+        else
+        {
+            _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/NoPowerWarning")) as GameObject;
+            ;
+            _uiPanel.transform.SetParent(gameObject.transform, true);
+            _uiPanel.transform.localPosition = Vector3.up *2;
             InteractionBounds.SetActive(false);
+            StartCoroutine(HidePowerUI());
         }
     }
 
     public void OnUiButtonPress(string pressed)
     {
         throw new NotImplementedException();
+    }
+
+    IEnumerator HidePowerUI()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(_uiPanel);
     }
 }

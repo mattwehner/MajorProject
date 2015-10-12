@@ -17,7 +17,8 @@ namespace Assets.Resources.Scripts.Controllers
             }
             Instance = this;
 
-            //UnityEngine.Cursor.visible = false;
+            Waypoint = UnityEngine.Resources.Load("Prefabs/Waypoint") as GameObject;
+            UnityEngine.Cursor.visible = (Application.platform == RuntimePlatform.WindowsEditor);
         }
     }
 }

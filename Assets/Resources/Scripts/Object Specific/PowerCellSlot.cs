@@ -1,10 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
 using Assets.Scripts.Object_Specific;
+using UnityEngine;
+using UnityEngine.Events;
 
-public class PowerCellSlot : MonoBehaviour
+public class PowerCellSlot : MonoBehaviour, IPowerer
 {
+    [Serializable]
+    public class PowerOnAction : UnityEvent { }
+    public PowerOnAction OnActivation;
+
     public bool _isCell;
+    public bool PowerOn { get; set; }
+    private IPowered _powered;
 
     void Awake()
     {
@@ -13,29 +21,39 @@ public class PowerCellSlot : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.tag == "cell")
+        if (collider.tag == "Powercell")
         {
             _isCell = true;
-            PoweredOn = true;
-            print(name + "was turned on");
-            return;
+            _powered = collider.GetComponent<IPowered>();
+            StartCoroutine(DelayPowerOn());
         }
-        _isCell = false;
+        
     }
 
-    void OnTriggerStay()
+    void OnTriggerStay(Collider collider)
     {
-        PoweredOn = _isCell;
+        if (collider.tag == "Powercell")
+        {
+            PowerOn = _isCell;
+            _powered.PoweredOn = PowerOn;
+        }
     }
 
     void OnTriggerExit()
     {
         if (_isCell)
         {
-            PoweredOn = false;
-            print(name + "was turned off");
+            PowerOn = false;
+            _powered.PoweredOn = PowerOn;
         }
     }
 
-    public bool PoweredOn { get; set; }
+    IEnumerator DelayPowerOn()
+    {
+        yield return new WaitForSeconds(2);
+        if (PowerOn)
+        {
+            OnActivation.Invoke();
+        }
+    }
 }

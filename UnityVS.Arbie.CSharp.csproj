@@ -63,6 +63,12 @@
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -131,21 +137,31 @@
     <Compile Include="Assets\Resources\Scripts\Controllers\GameController.cs" />
     <Compile Include="Assets\Resources\Scripts\Controllers\GestureController.cs" />
     <Compile Include="Assets\Resources\Scripts\Controllers\HandMotionController.cs" />
-    <Compile Include="Assets\Resources\Scripts\Controllers\MenuController.cs" />
+    <Compile Include="Assets\Resources\Scripts\Controllers\UIController.cs" />
     <Compile Include="Assets\Resources\Scripts\Controllers\WaypointController.cs" />
     <Compile Include="Assets\Resources\Scripts\HiResScreenShots.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interfaces\ICursor.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interfaces\IGrabable.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\IInteractable.cs" />
     <Compile Include="Assets\Resources\Scripts\Interfaces\IMenu.cs" />
-    <Compile Include="Assets\Resources\Scripts\Interfaces\IPoweredObject.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interfaces\IPowered.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interfaces\IPowerer.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interfaces\IUiButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Interfaces\IUiOwner.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\Cursor.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\DoorControl.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\EndGame.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Lift.cs" />
-    <Compile Include="Assets\Resources\Scripts\Object Specific\NewBehaviourScript.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\PowerCellSlot.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\Powercell.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\PressurePlate.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\LeapConvertor.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\OpenMenu.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\UIButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\SmallTerminal.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Terminal.cs" />
-    <Compile Include="Assets\Resources\Scripts\Object Specific\Waypoint.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\UI\MenuOption.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\UI\UIPanel.cs" />
     <Compile Include="Assets\Resources\Scripts\Settings.cs" />
     <Compile Include="Assets\Resources\Scripts\Storage\MaterialReferences.cs" />
   </ItemGroup>

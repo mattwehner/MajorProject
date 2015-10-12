@@ -28,6 +28,7 @@ public class MenuOption : MonoBehaviour, IUiButton
     public void ButtonAction()
     {
         transform.localPosition = new Vector2((transform.localPosition.x - 35f), transform.localPosition.y);
+        image.color = new Color32(219, 165, 16, 255);
         UIController.Instance.CursorModeOn(false);
     }
 }

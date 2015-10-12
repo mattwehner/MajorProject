@@ -1,4 +1,5 @@
-﻿using Assets.Resources.Scripts.Controllers;
+﻿using System.Collections;
+using Assets.Resources.Scripts.Controllers;
 using Assets.Resources.Scripts.Interfaces;
 using Assets.Resources.Scripts.Storage;
 using Assets.Scripts;
@@ -50,6 +51,11 @@ namespace Assets.Resources.Scripts.Object_Specific
                 : _iPowerer.PowerOn;
             _material.material = (PoweredOn) ? MaterialReferences.Instance.LiftOn : MaterialReferences.Instance.LiftOff;
 
+            if (_isMoving && !PoweredOn)
+            {
+                _isMoving = false;
+            }
+
             if (_isMoving)
             {
                 float distCovered = (Time.time - _startTime) * Settings.Game.LiftSpeed;
@@ -92,7 +98,12 @@ namespace Assets.Resources.Scripts.Object_Specific
             }
             else
             {
-                print("This Lift is currently out of order");
+                _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/NoPowerWarning")) as GameObject;
+                ;
+                _uiPanel.transform.SetParent(gameObject.transform, true);
+                _uiPanel.transform.localPosition = Vector3.up * 2;
+                InteractionBounds.SetActive(false);
+                StartCoroutine(HidePowerUI());
             }
         }
 
@@ -109,6 +120,12 @@ namespace Assets.Resources.Scripts.Object_Specific
             _startTime = Time.time;
 
             _isMoving = true;
+        }
+
+        IEnumerator HidePowerUI()
+        {
+            yield return new WaitForSeconds(3);
+            Destroy(_uiPanel);
         }
     }
 }

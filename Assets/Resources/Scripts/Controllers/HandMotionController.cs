@@ -74,7 +74,10 @@ namespace Assets.Scripts
             {
                 IInteractable interactable = Triggering.GetComponent<IInteractable>();
                 interactable.Activate();
-                UIController.Instance.CursorModeOn(interactable.PoweredOn);
+                if (!Triggering.name.Contains("Small"))
+                {
+                    UIController.Instance.CursorModeOn(interactable.PoweredOn);
+                }
             }
         }
 

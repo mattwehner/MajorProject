@@ -9,7 +9,6 @@ public class CameraController : MonoBehaviour
     private Frame _frame;
     public GameObject Player;
     public GameObject Controller;
-    public GameObject CameraIcon;
     public Camera Camera;
 
     private bool _cameraChecked;
@@ -18,11 +17,6 @@ public class CameraController : MonoBehaviour
 
     void Awake()
     {
-        if (CameraIcon == null)
-        {
-            CameraIcon = GameObject.Find("Camera Icon");
-        }
-        CameraIcon.SetActive(false);
         if (Player == null)
         {
             Player = GameObject.FindGameObjectWithTag("Player");
@@ -64,7 +58,6 @@ public class CameraController : MonoBehaviour
         else
         {
             _cameraChecked = false;
-            CameraIcon.SetActive(false);
             if (!UIController.Instance.IsActive)
             {
                 IsAtBoundry();
@@ -86,7 +79,6 @@ public class CameraController : MonoBehaviour
         if (!_cameraChecked)
         {
             _cameraStart = new Vector2(handPosition.x, handPosition.y);
-            CameraIcon.SetActive(true);
         }
         _cameraChecked = true;
 
