@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Runtime.InteropServices;
 using Assets.Resources.Scripts.Interfaces;
 using Leap;
 using UnityEngine;
@@ -14,9 +15,13 @@ namespace Assets.Scripts
 
         private NavMeshAgent _navAgent;
         private Rigidbody _rigidbody;
+        private Collider _collider;
 
+        private bool _isMoving;
         private bool _hasBeenThrown;
         private Controller _controller;
+
+        private Vector3 _destination;
 
 
         void Awake()
@@ -28,50 +33,17 @@ namespace Assets.Scripts
 
             Instance = this;
             _navAgent = GetComponent<NavMeshAgent>();
-            _navAgent.enabled = false;
             _rigidbody = GetComponent<Rigidbody>();
-            _rigidbody.isKinematic = false;
+            _collider = GetComponent<Collider>();
         }
         
         void Update()
         {
-            //if (_hasBeenThrown && (_rigidbody.velocity.magnitude <= Settings.Game.CharacterRecoverVelocity))
-            //{
-            //    StartCoroutine(WaitFor(5));
-            //    _hasBeenThrown = false;
-            //    _navAgent.enabled = true;
-            //}
-
-            throw new NotImplementedException();
-
-            if (_navAgent.enabled && _navAgent.remainingDistance < 0.11)
-            {
-                _navAgent.enabled = false;
-                _rigidbody.isKinematic = false;
-                WaypointController.Instance.Delete();
-            }
-        }
-
-        void OnCollisionEnter(Collision collision)
-        {
-            if (collision.collider.name.Contains("bone"))
-            {
-                _hasBeenThrown = true;
-                _navAgent.enabled = false;
-                _rigidbody.isKinematic = false;
-            }
         }
 
         internal void SetWaypoint(Vector3 destination)
         {
-            _navAgent.enabled = true;
-            _rigidbody.isKinematic = true;
             _navAgent.destination = destination;
-        }
-
-        IEnumerator WaitFor(float seconds)
-        {
-            yield return new WaitForSeconds(seconds);
         }
     }
 }
