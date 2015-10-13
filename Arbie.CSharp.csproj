@@ -150,6 +150,7 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\PowerCellSlot.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Powercell.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\PressurePlate.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\ArbieTerminalPlatform.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\LeapConvertor.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\OpenMenu.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\UIButton.cs" />
@@ -159,6 +160,7 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\UI\UIPanel.cs" />
     <Compile Include="Assets\Resources\Scripts\Settings.cs" />
     <Compile Include="Assets\Resources\Scripts\Storage\MaterialReferences.cs" />
+    <Compile Include="Assets\Scenes\Slides\SwipeToChange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeapMotion\Dependencies.txt" />

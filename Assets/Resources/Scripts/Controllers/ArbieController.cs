@@ -35,15 +35,25 @@ namespace Assets.Scripts
             _navAgent = GetComponent<NavMeshAgent>();
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
+            EnableNavAgent(false);
         }
-        
-        void Update()
+
+        void OnColliderEnter(Collider collider)
         {
+            
         }
 
         internal void SetWaypoint(Vector3 destination)
         {
+            EnableNavAgent(true);
             _navAgent.destination = destination;
+        }
+
+        private void EnableNavAgent(bool enable)
+        {
+            _navAgent.enabled = enable;
+            _rigidbody.isKinematic = enable;
+            _collider.isTrigger = enable;
         }
     }
 }

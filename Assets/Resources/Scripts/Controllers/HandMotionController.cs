@@ -74,7 +74,7 @@ namespace Assets.Scripts
             {
                 IInteractable interactable = Triggering.GetComponent<IInteractable>();
                 interactable.Activate();
-                if (!Triggering.name.Contains("Small"))
+                if (!Triggering.name.Contains("Small") && Triggering.name != "Console_Arbie")
                 {
                     UIController.Instance.CursorModeOn(interactable.PoweredOn);
                 }
