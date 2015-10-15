@@ -12,6 +12,8 @@ namespace Assets.Scripts.Object_Specific
         private Animator _animator;
         private Material _material;
 
+        private bool _canAnimate;
+
         void Awake()
         {
             _animator = GetComponent<Animator>();
@@ -27,6 +29,7 @@ namespace Assets.Scripts.Object_Specific
 
         void OnTriggerEnter()
         {
+            print("trigger enter");
             _animator.Play("pressure_plate_down");
             StartCoroutine(DelayTrigger());
         }
@@ -34,11 +37,11 @@ namespace Assets.Scripts.Object_Specific
         private void OnTriggerExit()
         {
             StopAllCoroutines();
-            
+            print("trigger exit");
             if (TriggerOnce) return;
             PowerOn = false;
-                _animator.Play("pressure_plate_up");
-                _material.SetColor("_Color", new Color32(248, 47, 47, 255));
+            _animator.Play("pressure_plate_up");
+            _material.SetColor("_Color", new Color32(248, 47, 47, 255));
             print(name + "was turned off");
         }
 

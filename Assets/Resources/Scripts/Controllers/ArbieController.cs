@@ -9,21 +9,18 @@ using UnityEngine;
 
 namespace Assets.Resources.Scripts.Controllers
 {
-    public class ArbieController : MonoBehaviour, IGrabable
+    public class ArbieController : MonoBehaviour
     {
 
         public static ArbieController Instance;
-        public bool BeingGrabbed { get; set; }
 
         private Controller _controller;
         private NavMeshAgent _navAgent;
         private Rigidbody _rigidbody;
         private Collider _collider;
-        private GrabbableObject _grabbableObject;
         private GameObject _camera;
         private GameObject _message;
 
-        private bool _isMoving;
         private bool _onGround;
         private bool _hasBeenThrown;
         private Vector3 _destination;
@@ -40,9 +37,11 @@ namespace Assets.Resources.Scripts.Controllers
             _navAgent = GetComponent<NavMeshAgent>();
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
-            _grabbableObject = GetComponent<GrabbableObject>();
             EnableNavAgent(false);
         }
+
+        private NavMeshPathStatus lastPathStatus;
+        private float lastRemainingDistance;
 
         void Update()
         {
@@ -59,7 +58,6 @@ namespace Assets.Resources.Scripts.Controllers
                 if (_destination != Vector3.zero)
                 {
                     EnableNavAgent(true);
-                    _isMoving = true;
                     _hasBeenThrown = false;
                     _navAgent.destination = _destination;
                 }
@@ -79,7 +77,6 @@ namespace Assets.Resources.Scripts.Controllers
             if (collider.name.Contains("bone"))
             {
                 EnableNavAgent(false);
-                _isMoving = false;
                 _hasBeenThrown = true;
             }
         }

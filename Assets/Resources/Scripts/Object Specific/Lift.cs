@@ -29,6 +29,7 @@ namespace Assets.Resources.Scripts.Object_Specific
         private Vector3 _moveFrom;
 
         private MeshRenderer _material;
+        private bool _hasJumped;
 
         void Awake()
         {
@@ -103,6 +104,20 @@ namespace Assets.Resources.Scripts.Object_Specific
                 InteractionBounds.SetActive(false);
                 StartCoroutine(HidePowerUI());
             }
+        }
+
+        public void JumpToPosition(float jumpTo)
+        {
+            if (_hasJumped)
+            {
+                return;
+            }
+            _hasJumped = true;
+            var jp = transform.localPosition;
+            jp.y = jumpTo;
+            transform.localPosition = jp;
+            OnUiButtonPress("Up");
+            
         }
 
         public void OnUiButtonPress(string pressed)

@@ -1,9 +1,7 @@
 ﻿using System.Collections;
-using System.Threading;
-using Assets.Scripts;
 using UnityEngine;
 
-namespace Assets.Resources.Scripts.Object_Specific
+namespace Assets.Resources.Scripts.Controllers
 {
     public class EndGame : MonoBehaviour
     {

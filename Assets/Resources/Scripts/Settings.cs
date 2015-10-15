@@ -42,6 +42,10 @@ namespace Assets.Scripts
             internal static Color32 Selected = new Color32(100,247,48,255);
             internal static Color32 PressurePlateActive = new Color32(248, 47, 47, 255);
             internal static Color32 PressurePlateInactive = new Color32(56, 204, 56, 255);
+            internal static Color32 AmbientLightOn = new Color32(169, 169, 169, 255);
+            internal static Color32 AmbientLightOff = new Color32(30,30,30,255);
+            internal static Color32 Red = new Color(1,0,0);
+            internal static Color32 Blue = new Color(0.625f, 0.9224137f,1);
         }
     }
 }
