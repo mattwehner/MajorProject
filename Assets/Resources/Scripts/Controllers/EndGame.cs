@@ -6,6 +6,8 @@ namespace Assets.Resources.Scripts.Controllers
     public class EndGame : MonoBehaviour
     {
         public GameObject Camera;
+        public static bool PowerRestored;
+
         private bool _hasCalled;
 
         void OnTriggerEnter(Collider collider)
@@ -19,6 +21,11 @@ namespace Assets.Resources.Scripts.Controllers
         void Awake()
         {
             Camera.SetActive(false);
+        }
+
+        public void RestorePower()
+        {
+            PowerRestored = true;
         }
 
         public void MoveCameraTo(int position)

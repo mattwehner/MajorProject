@@ -51,17 +51,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -153,6 +147,7 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\Cursor.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\DoorControl.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Lift.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\Monitor.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\PowerCellSlot.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Powercell.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\PressurePlate.cs" />
@@ -163,6 +158,7 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\SmallTerminal.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Terminal.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\UI\MenuOption.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\UI\Tasks.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\UI\UIPanel.cs" />
     <Compile Include="Assets\Resources\Scripts\Settings.cs" />
     <Compile Include="Assets\Resources\Scripts\Storage\MaterialReferences.cs" />

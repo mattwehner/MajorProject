@@ -10,6 +10,7 @@ public class PowerCellSlot : MonoBehaviour, IPowerer
     public class PowerOnAction : UnityEvent { }
     public PowerOnAction OnActivation;
 
+    public GameObject Light;
     public bool _isCell;
     public bool PowerOn { get; set; }
     private IPowered _powered;
@@ -17,6 +18,11 @@ public class PowerCellSlot : MonoBehaviour, IPowerer
     void Awake()
     {
         _isCell = false;
+    }
+
+    void Update()
+    {
+        Light.SetActive(PowerOn);
     }
 
     void OnTriggerEnter(Collider collider)

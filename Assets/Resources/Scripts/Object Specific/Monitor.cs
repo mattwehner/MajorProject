@@ -2,19 +2,21 @@
 using System.Collections;
 using Assets.Resources.Scripts.Controllers;
 using Assets.Resources.Scripts.Interfaces;
-using Assets.Resources.Scripts.Storage;
+using Assets.Resources.Scripts.Object_Specific.UI;
 using Assets.Scripts;
 using Assets.Scripts.Object_Specific;
 using UnityEngine;
 
 namespace Assets.Resources.Scripts.Object_Specific
 {
-    public class Terminal : MonoBehaviour, IInteractable, IPowered, IUiOwner
+    public class Monitor : MonoBehaviour, IInteractable, IPowered, IUiOwner
     {
+
+        internal bool Task1;
+        internal bool Task2;
+
         public bool PowerOnOveride;
         public GameObject PoweredBy;
-        public int TerminalType;
-        public string TerminalUI;
 
         public GameObject InteractionBounds { get; set; }
         public bool IsActive { get; set; }
@@ -23,8 +25,8 @@ namespace Assets.Resources.Scripts.Object_Specific
         private GameObject _uiPanel;
         private IPowerer _iPowerer;
         private MeshRenderer _material;
-        private Material _powerOn;
-        private Material _powerOff;
+        public Material _powerOn;
+        public Material _powerOff;
 
         void Awake()
         {
@@ -33,25 +35,8 @@ namespace Assets.Resources.Scripts.Object_Specific
                 ? PoweredBy
                 : gameObject;
             _iPowerer = PoweredBy.GetComponent<IPowerer>();
-
             InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
             InteractionBounds.SetActive(false);
-
-            switch (TerminalType)
-            {
-                case 1:
-                    _powerOff = MaterialReferences.Instance.TermainalSmallOff;
-                    _powerOn = MaterialReferences.Instance.TermainalSmallOn;
-                    break;
-                case 2:
-                    _powerOff = MaterialReferences.Instance.TerminalMediumOff;
-                    _powerOn = MaterialReferences.Instance.TerminalMediumOn;
-                    break;
-                case 3:
-                    _powerOff = MaterialReferences.Instance.TerminalLargeOff;
-                    _powerOn = MaterialReferences.Instance.TerminalLargeOn;
-                    break;
-            }
         }
 
         void Update()
@@ -60,7 +45,9 @@ namespace Assets.Resources.Scripts.Object_Specific
                 ? PowerOnOveride
                 : _iPowerer.PowerOn;
 
-            _material.material = (PoweredOn) ? _powerOn : _powerOff;
+            _material.material = (EndGame.PowerRestored) ? _powerOn : _powerOff;
+
+            Task1 = EndGame.PowerRestored;
         }
 
         public void OnTriggerStay(Collider collider)
@@ -84,23 +71,12 @@ namespace Assets.Resources.Scripts.Object_Specific
         public void Activate()
         {
             Destroy(_uiPanel);
-            if (PoweredOn)
-            {
-                _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/" + TerminalUI)) as GameObject;
-                ;
-                _uiPanel.transform.SetParent(UIController.Instance.gameObject.transform, false);
-                _uiPanel.transform.SetAsFirstSibling();
-                _uiPanel.GetComponent<UIPanel>().Owner = gameObject.GetComponent<IUiOwner>();
-                InteractionBounds.SetActive(false);
-            }
-            else
-            {
-                _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/NoPowerWarning")) as GameObject;
-                _uiPanel.transform.SetParent(gameObject.transform, true);
-                _uiPanel.transform.localPosition = Vector3.up *2;
-                InteractionBounds.SetActive(false);
-                StartCoroutine(HidePowerUI());
-            }
+            _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/Tasks")) as GameObject;
+            ;
+            _uiPanel.transform.SetParent(UIController.Instance.gameObject.transform, false);
+            _uiPanel.transform.SetAsFirstSibling();
+            _uiPanel.GetComponent<Tasks>().Owner = gameObject.GetComponent<Monitor>();
+            InteractionBounds.SetActive(false);
         }
 
         public void OnUiButtonPress(string pressed)
