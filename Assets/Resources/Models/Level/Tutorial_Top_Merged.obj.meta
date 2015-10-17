@@ -13,6 +13,8 @@ ModelImporter:
     100010: PressurePlate
     100012: Tutorial_Top_Merged:Mesh1
     100014: Tutorial_Top_Merged:PressurePlate
+    100016: polySurface4_polySurface1_Tutorial_Top_Merged:Mesh1
+    100018: Tutorial_Top_Merged:Mesh1_polySurface2
     400000: Corridor_Support:Mesh1
     400002: Pressureplate:PressurePlate
     400004: //RootNode
@@ -21,6 +23,8 @@ ModelImporter:
     400010: PressurePlate
     400012: Tutorial_Top_Merged:Mesh1
     400014: Tutorial_Top_Merged:PressurePlate
+    400016: polySurface4_polySurface1_Tutorial_Top_Merged:Mesh1
+    400018: Tutorial_Top_Merged:Mesh1_polySurface2
     2300000: Corridor_Support:Mesh1
     2300002: Pressureplate:PressurePlate
     2300004: default
@@ -28,6 +32,8 @@ ModelImporter:
     2300008: PressurePlate
     2300010: Tutorial_Top_Merged:Mesh1
     2300012: Tutorial_Top_Merged:PressurePlate
+    2300014: polySurface4_polySurface1_Tutorial_Top_Merged:Mesh1
+    2300016: Tutorial_Top_Merged:Mesh1_polySurface2
     3300000: Corridor_Support:Mesh1
     3300002: Pressureplate:PressurePlate
     3300004: default
@@ -35,6 +41,8 @@ ModelImporter:
     3300008: PressurePlate
     3300010: Tutorial_Top_Merged:Mesh1
     3300012: Tutorial_Top_Merged:PressurePlate
+    3300014: polySurface4_polySurface1_Tutorial_Top_Merged:Mesh1
+    3300016: Tutorial_Top_Merged:Mesh1_polySurface2
     4300000: Corridor_Support:Mesh1
     4300002: Pressureplate:PressurePlate
     4300004: default
@@ -42,6 +50,8 @@ ModelImporter:
     4300008: PressurePlate
     4300010: Tutorial_Top_Merged:Mesh1
     4300012: Tutorial_Top_Merged:PressurePlate
+    4300014: polySurface4_polySurface1_Tutorial_Top_Merged:Mesh1
+    4300016: Tutorial_Top_Merged:Mesh1_polySurface2
   materials:
     importMaterials: 1
     materialName: 0

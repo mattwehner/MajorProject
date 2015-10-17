@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Object_Specific
 {
     public class PressurePlate : MonoBehaviour, IPowerer
     {
-        public bool PowerOn { get; set; }
-        public bool TriggerOnce;
         private Animator _animator;
-        private Material _material;
-
         private bool _canAnimate;
+        private Material _material;
+        public bool TriggerOnce;
+        public bool PowerOn { get; set; }
 
-        void Awake()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
             _material = GetComponent<Renderer>().material;
@@ -22,12 +19,12 @@ namespace Assets.Scripts.Object_Specific
             _material.SetColor("_Color", new Color32(248, 47, 47, 255));
         }
 
-        void Start()
+        private void Start()
         {
             _animator.Play("pressure_plate_up");
         }
 
-        void OnTriggerEnter()
+        private void OnTriggerEnter()
         {
             print("trigger enter");
             _animator.Play("pressure_plate_down");
@@ -45,12 +42,12 @@ namespace Assets.Scripts.Object_Specific
             print(name + "was turned off");
         }
 
-        IEnumerator DelayTrigger()
+        private IEnumerator DelayTrigger()
         {
             yield return new WaitForSeconds(0.5f);
             _material.SetColor("_Color", new Color32(56, 204, 56, 255));
             print(name + "was turned on");
             PowerOn = true;
-        } 
+        }
     }
 }

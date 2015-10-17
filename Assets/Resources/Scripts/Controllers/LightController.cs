@@ -44,6 +44,7 @@ namespace Assets.Resources.Scripts.Controllers
             else
             {
                 OnValue = 1;
+                CaluculateLightEffects();
             }
         }
 

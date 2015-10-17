@@ -4,15 +4,14 @@ namespace Assets.Scripts.Object_Specific
 {
     public class DoorControl : MonoBehaviour
     {
-        public GameObject PoweredBy;
-        private IPowerer _iPoweredObject;
-        private Rigidbody _rigidbody;
         private Animator _animator;
-
-        private bool _isPowered;
+        private IPowerer _iPoweredObject;
         private bool _isOpened;
+        private bool _isPowered;
+        private Rigidbody _rigidbody;
+        public GameObject PoweredBy;
 
-        void Awake()
+        private void Awake()
         {
             _animator = GetComponent<Animator>();
             transform.localPosition = Vector3.zero;
@@ -22,7 +21,7 @@ namespace Assets.Scripts.Object_Specific
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        void Update()
+        private void Update()
         {
             //_isPowered = _iPoweredObject.PoweredOn;
 
@@ -35,7 +34,6 @@ namespace Assets.Scripts.Object_Specific
                 CloseDoor();
             }
         }
-
 
         private void OpenDoor()
         {

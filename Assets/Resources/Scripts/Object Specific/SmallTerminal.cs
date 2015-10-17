@@ -12,45 +12,17 @@ namespace Assets.Resources.Scripts.Object_Specific
 {
     public class SmallTerminal : MonoBehaviour, IInteractable, IPowered, IUiOwner
     {
-        [Serializable]
-        public class TerminalAction : UnityEvent { }
+        private IPowerer _iPowerer;
+        private MeshRenderer _material;
+        private Material _powerOff;
+        private Material _powerOn;
+        private GameObject _uiPanel;
         public TerminalAction OnActivation;
-
-        public bool PowerOnOveride;
         public GameObject PoweredBy;
-
+        public bool PowerOnOveride;
         public GameObject InteractionBounds { get; set; }
         public bool IsActive { get; set; }
         public bool PoweredOn { get; set; }
-
-        private GameObject _uiPanel;
-        private IPowerer _iPowerer;
-        private MeshRenderer _material;
-        private Material _powerOn;
-        private Material _powerOff;
-
-        void Awake()
-        {
-            _material = GetComponent<MeshRenderer>();
-            PoweredBy = (PoweredBy)
-                ? PoweredBy
-                : gameObject;
-            _iPowerer = PoweredBy.GetComponent<IPowerer>();
-
-            InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
-            InteractionBounds.SetActive(false);
-            _powerOff = MaterialReferences.Instance.TermainalSmallOff;
-            _powerOn = MaterialReferences.Instance.TermainalSmallOn;
-        }
-
-        void Update()
-        {
-            PoweredOn = (_iPowerer == null)
-                ? PowerOnOveride
-                : _iPowerer.PowerOn;
-
-            _material.material = (PoweredOn) ? _powerOn : _powerOff;
-        }
 
         public void OnTriggerStay(Collider collider)
         {
@@ -84,7 +56,7 @@ namespace Assets.Resources.Scripts.Object_Specific
                 _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/NoPowerWarning")) as GameObject;
                 ;
                 _uiPanel.transform.SetParent(gameObject.transform, true);
-                _uiPanel.transform.localPosition = Vector3.up * 2;
+                _uiPanel.transform.localPosition = Vector3.up*2;
                 InteractionBounds.SetActive(false);
                 StartCoroutine(HidePowerUI());
             }
@@ -95,10 +67,38 @@ namespace Assets.Resources.Scripts.Object_Specific
             throw new NotImplementedException();
         }
 
-        IEnumerator HidePowerUI()
+        private void Awake()
+        {
+            _material = GetComponent<MeshRenderer>();
+            PoweredBy = (PoweredBy)
+                ? PoweredBy
+                : gameObject;
+            _iPowerer = PoweredBy.GetComponent<IPowerer>();
+
+            InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
+            InteractionBounds.SetActive(false);
+            _powerOff = MaterialReferences.Instance.TermainalSmallOff;
+            _powerOn = MaterialReferences.Instance.TermainalSmallOn;
+        }
+
+        private void Update()
+        {
+            PoweredOn = (_iPowerer == null)
+                ? PowerOnOveride
+                : _iPowerer.PowerOn;
+
+            _material.material = (PoweredOn) ? _powerOn : _powerOff;
+        }
+
+        private IEnumerator HidePowerUI()
         {
             yield return new WaitForSeconds(3);
             Destroy(_uiPanel);
+        }
+
+        [Serializable]
+        public class TerminalAction : UnityEvent
+        {
         }
     }
 }

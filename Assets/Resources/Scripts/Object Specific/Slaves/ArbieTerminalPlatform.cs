@@ -6,12 +6,12 @@ namespace Assets.Resources.Scripts.Object_Specific.Slaves
     {
         private ArbieTerminal _arbieTerminal;
 
-        void Awake()
+        private void Awake()
         {
             _arbieTerminal = transform.parent.GetComponent<ArbieTerminal>();
         }
 
-        void OnTriggerStay(Collider collider)
+        private void OnTriggerStay(Collider collider)
         {
             if (collider.tag == "Arbie")
             {

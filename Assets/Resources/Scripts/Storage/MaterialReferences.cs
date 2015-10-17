@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Resources.Scripts.Storage
 {
     public class MaterialReferences : MonoBehaviour
     {
         public static MaterialReferences Instance;
-
-        public Material LiftOn;
         public Material LiftOff;
-
-        public Material TermainalSmallOn;
+        public Material LiftOn;
         public Material TermainalSmallOff;
-
-        public Material TerminalMediumOn;
-        public Material TerminalMediumOff;
-
-        public Material TerminalLargeOn;
+        public Material TermainalSmallOn;
         public Material TerminalLargeOff;
+        public Material TerminalLargeOn;
+        public Material TerminalMediumOff;
+        public Material TerminalMediumOn;
 
-        void Awake()
+        private void Awake()
         {
             if (Instance == null && Instance != this)
             {

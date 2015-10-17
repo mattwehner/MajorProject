@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using Assets.Resources.Scripts.Interfaces;
+﻿using Assets.Resources.Scripts.Interfaces;
 using Assets.Scripts;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Assets.Resources.Scripts.Object_Specific.Slaves
 {
-    public class UIButton : MonoBehaviour, IUiButton {
-
-        private RawImage _rawImage;
+    public class UIButton : MonoBehaviour, IUiButton
+    {
         private bool _beenActivated;
-
-        void Awake()
-        {
-            _rawImage = GetComponent<RawImage>();
-        }
+        private RawImage _rawImage;
 
         public void OnTriggerEnter2D()
         {
@@ -38,5 +30,10 @@ namespace Assets.Resources.Scripts.Object_Specific.Slaves
                 _rawImage.color = Settings.Colors.Selected;
             }
         }
-    } 
+
+        private void Awake()
+        {
+            _rawImage = GetComponent<RawImage>();
+        }
+    }
 }

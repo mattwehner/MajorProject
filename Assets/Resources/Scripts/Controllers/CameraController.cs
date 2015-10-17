@@ -1,21 +1,19 @@
-﻿using System;
-using Assets.Resources.Scripts.Controllers;
+﻿using Assets.Resources.Scripts.Controllers;
 using Assets.Scripts;
 using Leap;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private Frame _frame;
-    public GameObject Player;
-    public GameObject Controller;
-    public Camera Camera;
-
     private bool _cameraChecked;
     private Vector2 _cameraStart;
+    private Frame _frame;
+    public Camera Camera;
     private Vector4 cameraBounds;
+    public GameObject Controller;
+    public GameObject Player;
 
-    void Awake()
+    private void Awake()
     {
         if (Player == null)
         {
@@ -30,26 +28,25 @@ public class CameraController : MonoBehaviour
             Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         }
 
-        cameraBounds = new Vector4(-13f,20f,-11f,2f);
+        cameraBounds = new Vector4(-13f, 20f, -11f, 2f);
     }
 
     private void Update()
     {
-
         _frame = HandMotionController.Instance.Controller.Frame();
         if (_frame.Hands.IsEmpty)
         {
             return;
         }
 
-        FingerList fingers = _frame.Hands[0].Fingers;
-        FingerList extendedFingers = fingers.Extended();
-        FingerList thumb = fingers.FingerType(Finger.FingerType.TYPE_THUMB);
-        FingerList pinkyFinger = fingers.FingerType(Finger.FingerType.TYPE_PINKY);
+        var fingers = _frame.Hands[0].Fingers;
+        var extendedFingers = fingers.Extended();
+        var thumb = fingers.FingerType(Finger.FingerType.TYPE_THUMB);
+        var pinkyFinger = fingers.FingerType(Finger.FingerType.TYPE_PINKY);
 
-        bool isCamera = extendedFingers.Count == 2 &&
-            extendedFingers[0].Equals(thumb[0]) &&
-                extendedFingers[1].Equals(pinkyFinger[0]);
+        var isCamera = extendedFingers.Count == 2 &&
+                       extendedFingers[0].Equals(thumb[0]) &&
+                       extendedFingers[1].Equals(pinkyFinger[0]);
 
         if (isCamera)
         {
@@ -73,8 +70,8 @@ public class CameraController : MonoBehaviour
 
     private void CameraMovement()
     {
-        InteractionBox interactionBox = _frame.InteractionBox;
-        Vector handPosition = interactionBox.NormalizePoint(_frame.Hands[0].StabilizedPalmPosition);
+        var interactionBox = _frame.InteractionBox;
+        var handPosition = interactionBox.NormalizePoint(_frame.Hands[0].StabilizedPalmPosition);
 
         if (!_cameraChecked)
         {
@@ -95,20 +92,20 @@ public class CameraController : MonoBehaviour
         var y = 0;
         if (normalizedHandPosition.x == 0)
         {
-            x = (int)-Settings.Player.PlayerMovementSpeed;
+            x = (int) -Settings.Player.PlayerMovementSpeed;
         }
         if (normalizedHandPosition.x == 1)
         {
-            x = (int)Settings.Player.PlayerMovementSpeed;
+            x = (int) Settings.Player.PlayerMovementSpeed;
         }
         if (normalizedHandPosition.y <= 0.15)
         {
-            y = (int)-Settings.Player.PlayerMovementSpeed;
+            y = (int) -Settings.Player.PlayerMovementSpeed;
         }
         if (normalizedHandPosition.y == 1)
         {
-            y = (int)Settings.Player.PlayerMovementSpeed;
+            y = (int) Settings.Player.PlayerMovementSpeed;
         }
-        transform.Translate(new Vector3(x, y, 0) * Time.deltaTime);
+        transform.Translate(new Vector3(x, y, 0)*Time.deltaTime);
     }
 }

@@ -1,14 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
-using Assets.Resources.Scripts.Controllers;
-using Assets.Scripts;
-using Leap;
+﻿using Assets.Resources.Scripts.Controllers;
+using UnityEngine;
 
 public class WaypointController : MonoBehaviour
 {
     public static WaypointController Instance;
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
     }
@@ -17,7 +14,7 @@ public class WaypointController : MonoBehaviour
     {
         print("waypoint created at: " + position);
 
-        Vector3 tapCoords = FindMarkerHeight(position);
+        var tapCoords = FindMarkerHeight(position);
 
         if (GameController.Instance.CurrentWaypoint == null)
         {
@@ -36,8 +33,9 @@ public class WaypointController : MonoBehaviour
         var newCoords = startPosition;
 
         var rayStart = new Vector3(startPosition.x, (startPosition.y), startPosition.z);
-        Ray collisionRay = new Ray(rayStart, Vector3.down);
-        RaycastHit hit; ;
+        var collisionRay = new Ray(rayStart, Vector3.down);
+        RaycastHit hit;
+        ;
 
         if (Physics.Raycast(collisionRay, out hit))
         {

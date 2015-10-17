@@ -1,18 +1,15 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.Object_Specific;
-using Leap;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Resources.Scripts.Controllers
 {
     public class UIController : MonoBehaviour
     {
         public static UIController Instance;
-        public GameObject CursorObject;
         private Cursor _cursor;
-
+        public GameObject CursorObject;
         internal bool IsActive;
-        void Awake()
+
+        private void Awake()
         {
             if (Instance != this || !Instance)
             {
@@ -22,7 +19,7 @@ namespace Assets.Resources.Scripts.Controllers
             _cursor = CursorObject.GetComponent<Cursor>();
         }
 
-        void Update()
+        private void Update()
         {
             _cursor.enabled = IsActive;
             CursorObject.SetActive(IsActive);
@@ -30,7 +27,7 @@ namespace Assets.Resources.Scripts.Controllers
 
         public void CursorModeOn(bool active)
         {
-            HandController handController = GameObject.FindGameObjectWithTag("GameController").GetComponent<HandController>();
+            var handController = GameObject.FindGameObjectWithTag("GameController").GetComponent<HandController>();
             if (active)
             {
                 handController.DestroyAllHands();

@@ -7,12 +7,6 @@ public class MenuOption : MonoBehaviour, IUiButton
 {
     private RawImage image;
 
-    void Awake()
-    {
-        image =
-            GetComponent<RawImage>();
-    }
-
     public void OnTriggerEnter2D()
     {
         image.color = Color.cyan;
@@ -30,5 +24,11 @@ public class MenuOption : MonoBehaviour, IUiButton
         transform.localPosition = new Vector2((transform.localPosition.x - 35f), transform.localPosition.y);
         image.color = new Color32(219, 165, 16, 255);
         UIController.Instance.CursorModeOn(false);
+    }
+
+    private void Awake()
+    {
+        image =
+            GetComponent<RawImage>();
     }
 }

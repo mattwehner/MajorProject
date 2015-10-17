@@ -155,6 +155,7 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\LeapConvertor.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\OpenMenu.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\UIButton.cs" />
+    <Compile Include="Assets\Resources\Scripts\Object Specific\Slaves\Utilities.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\SmallTerminal.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\Terminal.cs" />
     <Compile Include="Assets\Resources\Scripts\Object Specific\UI\MenuOption.cs" />

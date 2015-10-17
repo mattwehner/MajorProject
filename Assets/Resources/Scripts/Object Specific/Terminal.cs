@@ -11,57 +11,18 @@ namespace Assets.Resources.Scripts.Object_Specific
 {
     public class Terminal : MonoBehaviour, IInteractable, IPowered, IUiOwner
     {
-        public bool PowerOnOveride;
+        private IPowerer _iPowerer;
+        private MeshRenderer _material;
+        private Material _powerOff;
+        private Material _powerOn;
+        private GameObject _uiPanel;
         public GameObject PoweredBy;
+        public bool PowerOnOveride;
         public int TerminalType;
         public string TerminalUI;
-
         public GameObject InteractionBounds { get; set; }
         public bool IsActive { get; set; }
         public bool PoweredOn { get; set; }
-
-        private GameObject _uiPanel;
-        private IPowerer _iPowerer;
-        private MeshRenderer _material;
-        private Material _powerOn;
-        private Material _powerOff;
-
-        void Awake()
-        {
-            _material = GetComponent<MeshRenderer>();
-            PoweredBy = (PoweredBy)
-                ? PoweredBy
-                : gameObject;
-            _iPowerer = PoweredBy.GetComponent<IPowerer>();
-
-            InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
-            InteractionBounds.SetActive(false);
-
-            switch (TerminalType)
-            {
-                case 1:
-                    _powerOff = MaterialReferences.Instance.TermainalSmallOff;
-                    _powerOn = MaterialReferences.Instance.TermainalSmallOn;
-                    break;
-                case 2:
-                    _powerOff = MaterialReferences.Instance.TerminalMediumOff;
-                    _powerOn = MaterialReferences.Instance.TerminalMediumOn;
-                    break;
-                case 3:
-                    _powerOff = MaterialReferences.Instance.TerminalLargeOff;
-                    _powerOn = MaterialReferences.Instance.TerminalLargeOn;
-                    break;
-            }
-        }
-
-        void Update()
-        {
-            PoweredOn = (_iPowerer == null)
-                ? PowerOnOveride
-                : _iPowerer.PowerOn;
-
-            _material.material = (PoweredOn) ? _powerOn : _powerOff;
-        }
 
         public void OnTriggerStay(Collider collider)
         {
@@ -97,7 +58,7 @@ namespace Assets.Resources.Scripts.Object_Specific
             {
                 _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/NoPowerWarning")) as GameObject;
                 _uiPanel.transform.SetParent(gameObject.transform, true);
-                _uiPanel.transform.localPosition = Vector3.up *2;
+                _uiPanel.transform.localPosition = Vector3.up*2;
                 InteractionBounds.SetActive(false);
                 StartCoroutine(HidePowerUI());
             }
@@ -108,7 +69,44 @@ namespace Assets.Resources.Scripts.Object_Specific
             throw new NotImplementedException();
         }
 
-        IEnumerator HidePowerUI()
+        private void Awake()
+        {
+            _material = GetComponent<MeshRenderer>();
+            PoweredBy = (PoweredBy)
+                ? PoweredBy
+                : gameObject;
+            _iPowerer = PoweredBy.GetComponent<IPowerer>();
+
+            InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
+            InteractionBounds.SetActive(false);
+
+            switch (TerminalType)
+            {
+                case 1:
+                    _powerOff = MaterialReferences.Instance.TermainalSmallOff;
+                    _powerOn = MaterialReferences.Instance.TermainalSmallOn;
+                    break;
+                case 2:
+                    _powerOff = MaterialReferences.Instance.TerminalMediumOff;
+                    _powerOn = MaterialReferences.Instance.TerminalMediumOn;
+                    break;
+                case 3:
+                    _powerOff = MaterialReferences.Instance.TerminalLargeOff;
+                    _powerOn = MaterialReferences.Instance.TerminalLargeOn;
+                    break;
+            }
+        }
+
+        private void Update()
+        {
+            PoweredOn = (_iPowerer == null)
+                ? PowerOnOveride
+                : _iPowerer.PowerOn;
+
+            _material.material = (PoweredOn) ? _powerOn : _powerOff;
+        }
+
+        private IEnumerator HidePowerUI()
         {
             yield return new WaitForSeconds(3);
             Destroy(_uiPanel);
