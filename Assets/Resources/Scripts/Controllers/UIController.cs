@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scenes.Slides.Resources;
+using UnityEngine;
 
 namespace Assets.Resources.Scripts.Controllers
 {
@@ -6,6 +7,7 @@ namespace Assets.Resources.Scripts.Controllers
     {
         public static UIController Instance;
         private Cursor _cursor;
+        private CursorPresentation _cursorPresentation;
         public GameObject CursorObject;
         internal bool IsActive;
 
@@ -17,11 +19,22 @@ namespace Assets.Resources.Scripts.Controllers
                 Instance = this;
             }
             _cursor = CursorObject.GetComponent<Cursor>();
+            if (_cursor == null)
+            {
+                _cursorPresentation = CursorObject.GetComponent<CursorPresentation>();
+            }
         }
 
         private void Update()
         {
-            _cursor.enabled = IsActive;
+            if (Application.loadedLevelName.Contains("slide"))
+            {
+                _cursorPresentation.enabled = IsActive;
+            }
+            else
+            {
+                _cursor.enabled = IsActive;
+            }
             CursorObject.SetActive(IsActive);
         }
 

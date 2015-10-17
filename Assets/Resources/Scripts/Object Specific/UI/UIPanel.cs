@@ -1,5 +1,6 @@
 ﻿using Assets.Resources.Scripts.Controllers;
 using Assets.Resources.Scripts.Interfaces;
+using Assets.Scenes.Slides.Resources;
 using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,6 +31,14 @@ public class UIPanel : MonoBehaviour
     {
         if (collider.GetComponent<ICursor>().IsGrabbing)
         {
+            if (Application.loadedLevelName.Contains("slide"))
+            {
+                var sg = GameObject.FindGameObjectWithTag("GameController").GetComponent<SelectGesture>();
+                sg.SetCollider(false, null);
+                UIController.Instance.CursorModeOn(false);
+                Destroy(gameObject);
+                return;
+            }
             HandMotionController.Instance.SetCollider(false, null);
             UIController.Instance.CursorModeOn(false);
             Destroy(gameObject);

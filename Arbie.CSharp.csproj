@@ -163,7 +163,11 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\UI\UIPanel.cs" />
     <Compile Include="Assets\Resources\Scripts\Settings.cs" />
     <Compile Include="Assets\Resources\Scripts\Storage\MaterialReferences.cs" />
-    <Compile Include="Assets\Scenes\Slides\SwipeToChange.cs" />
+    <Compile Include="Assets\Scenes\Slides\Resources\CursorPresentation.cs" />
+    <Compile Include="Assets\Scenes\Slides\Resources\GestureRecognition.cs" />
+    <Compile Include="Assets\Scenes\Slides\Resources\PresentationTerminal.cs" />
+    <Compile Include="Assets\Scenes\Slides\Resources\SelectGesture.cs" />
+    <Compile Include="Assets\Scenes\Slides\Resources\SwipeToChange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LeapMotion\Dependencies.txt" />
