@@ -32,6 +32,10 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
         }
         void Update ()
         {
+            if (TutorialController.Instance.CurrentPhase != 1)
+            {
+                return;
+            }
             if (TutorialController.Instance.CanSetWaypoint && HasReachedWaypoint)
             {
                 Line.SetActive(true);
