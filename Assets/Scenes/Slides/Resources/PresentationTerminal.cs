@@ -76,8 +76,8 @@ namespace Assets.Resources.Scripts.Object_Specific
             InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
             InteractionBounds.SetActive(false);
             
-                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("TerminalLargeOn", out _powerOn);
-                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("TerminalLargeOff", out _powerOff);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Large_Broken", out _powerOn);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Large_Broken", out _powerOff);
         }
 
         private void Update()

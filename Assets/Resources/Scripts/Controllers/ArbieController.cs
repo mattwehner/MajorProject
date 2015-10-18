@@ -16,12 +16,14 @@ namespace Assets.Resources.Scripts.Controllers
         private Collider _collider;
         private Controller _controller;
         private Vector3 _destination;
+        private bool _scared;
         private bool _hasBeenThrown;
         private GameObject _message;
         private NavMeshAgent _navAgent;
         private bool _onGround;
         private Rigidbody _rigidbody;
         private AudioSource _moveSound;
+        private GrabbableObject _grabbableObject;
         private NavMeshPathStatus lastPathStatus;
         private float lastRemainingDistance;
         
@@ -33,13 +35,9 @@ namespace Assets.Resources.Scripts.Controllers
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<Collider>();
             _moveSound = GetComponent<AudioSource>();
+            _grabbableObject = gameObject.AddComponent<GrabbableObject>();
             EnableNavAgent(false);
             _moveSound.pitch = 0;
-        }
-
-        void Start()
-        {
-            PlayMessage(4);
         }
 
         void Update()
@@ -73,7 +71,9 @@ namespace Assets.Resources.Scripts.Controllers
 
         void FixedUpdate()
         {
-            
+            if (_grabbableObject.IsGrabbed() || !_onGround)
+            {CheckHeight();
+            }
         }
 
         public void PlayMessage(int index)
@@ -133,7 +133,17 @@ namespace Assets.Resources.Scripts.Controllers
 
         private void CheckHeight()
         {
-            
+            Ray ray = new Ray(transform.position, Vector3.down);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit);
+            print("Arbie is " + hit.distance + " off the ground");
+
+            if (hit.distance > 4 && !_scared)
+            {
+                PlayMessage(15);
+                _scared = true;
+            }
+                _scared = !(hit.distance < 4);
         }
 
         private void EnableNavAgent(bool enable)

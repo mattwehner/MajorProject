@@ -1,4 +1,5 @@
 ﻿using Assets.Resources.Scripts.Controllers;
+using Assets.Resources.Scripts.TutorialSpecific;
 using Assets.Scripts;
 using Leap;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class CameraController : MonoBehaviour
     private Vector2 _cameraStart;
     private Frame _frame;
     public Camera Camera;
-    private Vector4 cameraBounds;
+    public Vector4 CameraBounds;
     public GameObject Controller;
     public GameObject Player;
 
@@ -28,7 +29,7 @@ public class CameraController : MonoBehaviour
             Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         }
 
-        cameraBounds = new Vector4(-20f, 20f, -11f, 2f);
+        CameraBounds = (CameraBounds == Vector4.zero)?new Vector4(-20f, 20f, -11f, 2f):CameraBounds;
     }
 
     private void Update()
@@ -62,8 +63,8 @@ public class CameraController : MonoBehaviour
         }
 
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, cameraBounds.x, cameraBounds.y),
-            Mathf.Clamp(transform.position.y, cameraBounds.z, cameraBounds.w),
+            Mathf.Clamp(transform.position.x, CameraBounds.x, CameraBounds.y),
+            Mathf.Clamp(transform.position.y, CameraBounds.z, CameraBounds.w),
             0
             );
     }

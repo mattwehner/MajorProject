@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.2.1f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -167,6 +165,10 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\UI\UIPanel.cs" />
     <Compile Include="Assets\Resources\Scripts\Settings.cs" />
     <Compile Include="Assets\Resources\Scripts\Storage\ObjectRefences.cs" />
+    <Compile Include="Assets\Resources\Scripts\TutorialSpecific\Phases\PhaseZero.cs" />
+    <Compile Include="Assets\Resources\Scripts\TutorialSpecific\TutorialCamera.cs" />
+    <Compile Include="Assets\Resources\Scripts\TutorialSpecific\TutorialController.cs" />
+    <Compile Include="Assets\Resources\Scripts\TutorialSpecific\TutorialGestures.cs" />
     <Compile Include="Assets\Scenes\Slides\Resources\CursorPresentation.cs" />
     <Compile Include="Assets\Scenes\Slides\Resources\GestureRecognition.cs" />
     <Compile Include="Assets\Scenes\Slides\Resources\PresentationTerminal.cs" />
