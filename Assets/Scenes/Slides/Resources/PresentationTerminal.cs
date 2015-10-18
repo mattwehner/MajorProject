@@ -75,22 +75,9 @@ namespace Assets.Resources.Scripts.Object_Specific
 
             InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
             InteractionBounds.SetActive(false);
-
-            switch (TerminalType)
-            {
-                case 1:
-                    _powerOff = MaterialReferences.Instance.TermainalSmallOff;
-                    _powerOn = MaterialReferences.Instance.TermainalSmallOn;
-                    break;
-                case 2:
-                    _powerOff = MaterialReferences.Instance.TerminalMediumOff;
-                    _powerOn = MaterialReferences.Instance.TerminalMediumOn;
-                    break;
-                case 3:
-                    _powerOff = MaterialReferences.Instance.TerminalLargeOff;
-                    _powerOn = MaterialReferences.Instance.TerminalLargeOn;
-                    break;
-            }
+            
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("TerminalLargeOn", out _powerOn);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("TerminalLargeOff", out _powerOff);
         }
 
         private void Update()

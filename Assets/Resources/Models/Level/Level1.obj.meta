@@ -9,19 +9,59 @@ ModelImporter:
     100002: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface2_polySurface4
     100004: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface4_Tutorial_Top_Merged:polySurface5_polySurface2_polySurface7_polySurface6
     100006: Tutorial_Top_Merged:PressurePlate_polySurface5_polySurface2
+    100008: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_polySurface5
+    100010: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface6_polySurface3_polySurface10
+    100012: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface8
+    100014: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface7_polySurface6_polySurface3
+    100016: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_background_Corridor
+    100018: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_level_polySurface6_polySurface3
+    100020: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_powercell_slot
+    100022: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface6_polySurface3_pressure_Plate
     400000: //RootNode
     400002: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface2_polySurface4
     400004: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface4_Tutorial_Top_Merged:polySurface5_polySurface2_polySurface7_polySurface6
     400006: Tutorial_Top_Merged:PressurePlate_polySurface5_polySurface2
+    400008: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_polySurface5
+    400010: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface6_polySurface3_polySurface10
+    400012: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface8
+    400014: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface7_polySurface6_polySurface3
+    400016: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_background_Corridor
+    400018: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_level_polySurface6_polySurface3
+    400020: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_powercell_slot
+    400022: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface6_polySurface3_pressure_Plate
     2300000: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface2_polySurface4
     2300002: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface4_Tutorial_Top_Merged:polySurface5_polySurface2_polySurface7_polySurface6
     2300004: Tutorial_Top_Merged:PressurePlate_polySurface5_polySurface2
+    2300006: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_polySurface5
+    2300008: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface6_polySurface3_polySurface10
+    2300010: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface8
+    2300012: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface7_polySurface6_polySurface3
+    2300014: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_background_Corridor
+    2300016: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_level_polySurface6_polySurface3
+    2300018: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_powercell_slot
+    2300020: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface6_polySurface3_pressure_Plate
     3300000: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface2_polySurface4
     3300002: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface4_Tutorial_Top_Merged:polySurface5_polySurface2_polySurface7_polySurface6
     3300004: Tutorial_Top_Merged:PressurePlate_polySurface5_polySurface2
+    3300006: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_polySurface5
+    3300008: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface6_polySurface3_polySurface10
+    3300010: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface8
+    3300012: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface7_polySurface6_polySurface3
+    3300014: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_background_Corridor
+    3300016: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_level_polySurface6_polySurface3
+    3300018: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_powercell_slot
+    3300020: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface6_polySurface3_pressure_Plate
     4300000: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface2_polySurface4
     4300002: Tutorial_Top_Merged:Mesh1_Tutorial_Top_Merged:polySurface4_Tutorial_Top_Merged:polySurface5_polySurface2_polySurface7_polySurface6
     4300004: Tutorial_Top_Merged:PressurePlate_polySurface5_polySurface2
+    4300006: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_polySurface5
+    4300008: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface6_polySurface3_polySurface10
+    4300010: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_polySurface8
+    4300012: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface7_polySurface6_polySurface3
+    4300014: Level1:Mesh1_Level1:polySurface2_Level1:polySurface7_Level1:polySurface8_Level1:polySurface9_Level1:polySurface10_polySurface3_background_Corridor
+    4300016: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_level_polySurface6_polySurface3
+    4300018: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_powercell_slot
+    4300020: Level1:PressurePlate_Level1:polySurface2_Level1:polySurface5_polySurface6_polySurface3_pressure_Plate
   materials:
     importMaterials: 1
     materialName: 0

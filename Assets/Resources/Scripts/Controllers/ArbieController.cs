@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using Assets.Resources.Scripts.Storage;
 using Assets.Scripts;
 using Leap;
 using UnityEngine;
@@ -22,14 +24,10 @@ namespace Assets.Resources.Scripts.Controllers
         private AudioSource _moveSound;
         private NavMeshPathStatus lastPathStatus;
         private float lastRemainingDistance;
+        
 
-        private void Awake()
+        void Awake()
         {
-            if (Instance != null && Instance != this)
-            {
-                Destroy(gameObject.GetComponent<ArbieController>());
-            }
-
             Instance = this;
             _navAgent = GetComponent<NavMeshAgent>();
             _rigidbody = GetComponent<Rigidbody>();
@@ -39,11 +37,18 @@ namespace Assets.Resources.Scripts.Controllers
             _moveSound.pitch = 0;
         }
 
-        private void Update()
+        void Start()
+        {
+            PlayMessage(4);
+        }
+
+        void Update()
         {
                 _moveSound.pitch = (_onGround && _navAgent.enabled) ? 2 : 0;
+
             if (_navAgent.enabled && _canClearWaypoint && _onGround && _navAgent.remainingDistance < 0.11f)
             {
+                PlaySound(1);
                 EnableNavAgent(false);
                 WaypointController.Instance.Delete();
                 _destination = Vector3.zero;
@@ -64,6 +69,21 @@ namespace Assets.Resources.Scripts.Controllers
                     StartCoroutine(UprightArbie());
                 }
             }
+        }
+
+        void FixedUpdate()
+        {
+            
+        }
+
+        public void PlayMessage(int index)
+        {
+            InstantiateMessage(index);
+        }
+
+        public void PlaySound(int index)
+        {
+            InstantiateSound(index);
         }
 
         private void OnTriggerEnter(Collider collider)
@@ -101,6 +121,7 @@ namespace Assets.Resources.Scripts.Controllers
                 if (waypoint < transform.position.y - 1 || waypoint > transform.position.y + 1)
                 {
                     PlayMessage(3);
+                    if (!_navAgent.hasPath){ EnableNavAgent(false);}
                     return;
                 }
                 EnableNavAgent(true);
@@ -108,6 +129,11 @@ namespace Assets.Resources.Scripts.Controllers
                 print("destination set at: " + Time.timeSinceLevelLoad);
                 StartCoroutine(CanClearWaypoint());
             }
+        }
+
+        private void CheckHeight()
+        {
+            
         }
 
         private void EnableNavAgent(bool enable)
@@ -124,14 +150,23 @@ namespace Assets.Resources.Scripts.Controllers
             _hasBeenThrown = false;
         }
 
-        public void PlayMessage(int number)
+        private void InstantiateMessage(int number)
         {
             Destroy(_message);
             StopCoroutine(DisplayMessage());
             _message = Instantiate(UnityEngine.Resources.Load("Prefabs/Arbie/message" + number)) as GameObject;
             _message.transform.SetParent(gameObject.transform, true);
             _message.transform.localPosition = Vector3.up*1.75f;
-            _message.transform.Rotate(0, 180, 0, 0);
+            StartCoroutine(DisplayMessage());
+        }
+
+        private void InstantiateSound(int index)
+        {
+            Destroy(_message);
+            StopCoroutine(DisplayMessage());
+            _message = Instantiate(UnityEngine.Resources.Load("Prefabs/Arbie/message0")) as GameObject;
+            _message.GetComponent<AudioSource>().clip = ObjectRefences.Instance.SoundBites[index];
+            _message.transform.SetParent(gameObject.transform, true);
             StartCoroutine(DisplayMessage());
         }
 

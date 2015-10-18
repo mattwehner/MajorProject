@@ -83,16 +83,16 @@ namespace Assets.Resources.Scripts.Object_Specific
             switch (TerminalType)
             {
                 case 1:
-                    _powerOff = MaterialReferences.Instance.TermainalSmallOff;
-                    _powerOn = MaterialReferences.Instance.TermainalSmallOn;
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Small_On", out _powerOn);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("ConsoleSmallOff", out _powerOff);
                     break;
                 case 2:
-                    _powerOff = MaterialReferences.Instance.TerminalMediumOff;
-                    _powerOn = MaterialReferences.Instance.TerminalMediumOn;
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Medium_On", out _powerOn);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("ConsoleMediumOff", out _powerOff);
                     break;
                 case 3:
-                    _powerOff = MaterialReferences.Instance.TerminalLargeOff;
-                    _powerOn = MaterialReferences.Instance.TerminalLargeOn;
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Large_Broken", out _powerOn);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Large_Broken", out _powerOff);
                     break;
             }
         }

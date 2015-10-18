@@ -41,8 +41,8 @@ namespace Assets.Resources.Scripts.Object_Specific
 
             InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
             InteractionBounds.SetActive(false);
-            _powerOff = MaterialReferences.Instance.TermainalSmallOff;
-            _powerOn = MaterialReferences.Instance.TermainalSmallOn;
+            ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Small_Off", out _powerOff);
+            ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Small_On", out _powerOn);
         }
 
         void Update()

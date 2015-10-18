@@ -50,7 +50,6 @@ namespace Assets.Resources.Scripts.Controllers
         {
             StartCoroutine(Utilities.MoveFromTo(arbie.transform, new Vector3(-5.021008f, -1.139717f, 4.79f), new Vector3(-4.958269f, -1.139717f, 2.407f), 1));
             SmallDoors.Play("Close");
-            arbie.GetComponent<ArbieController>().PlayMessage(4);
         }
     }
 }

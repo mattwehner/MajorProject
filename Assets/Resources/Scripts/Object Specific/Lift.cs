@@ -28,6 +28,9 @@ namespace Assets.Resources.Scripts.Object_Specific
         private Vector3 _moveTo;
         private Vector3 _moveFrom;
 
+        private Material _liftOn;
+        private Material _liftOff;
+
         private MeshRenderer _material;
         private bool _hasJumped;
 
@@ -42,6 +45,9 @@ namespace Assets.Resources.Scripts.Object_Specific
             InteractionBounds = transform.FindChild("InteractiveBox").gameObject;
             InteractionBounds.SetActive(false);
 
+            ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Lift_On", out _liftOn);
+            ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Lift_Off", out _liftOff);
+
             _startCoordinates = transform.localPosition;
         }
 
@@ -50,7 +56,7 @@ namespace Assets.Resources.Scripts.Object_Specific
             PoweredOn = (_iPowerer == null)
                 ? PowerOnOveride
                 : _iPowerer.PowerOn;
-            _material.material = (PoweredOn) ? MaterialReferences.Instance.LiftOn : MaterialReferences.Instance.LiftOff;
+            _material.material = (PoweredOn) ? _liftOn : _liftOff;
 
             if (_isMoving && !PoweredOn)
             {

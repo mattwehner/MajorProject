@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
             Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         }
 
-        cameraBounds = new Vector4(-13f, 20f, -11f, 2f);
+        cameraBounds = new Vector4(-20f, 20f, -11f, 2f);
     }
 
     private void Update()
