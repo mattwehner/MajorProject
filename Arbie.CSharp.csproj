@@ -51,11 +51,17 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -165,10 +171,13 @@
     <Compile Include="Assets\Resources\Scripts\Object Specific\UI\UIPanel.cs" />
     <Compile Include="Assets\Resources\Scripts\Settings.cs" />
     <Compile Include="Assets\Resources\Scripts\Storage\ObjectRefences.cs" />
+    <Compile Include="Assets\Resources\Scripts\TutorialSpecific\Phases\PhaseOne.cs" />
+    <Compile Include="Assets\Resources\Scripts\TutorialSpecific\Phases\PhaseTwo.cs" />
     <Compile Include="Assets\Resources\Scripts\TutorialSpecific\Phases\PhaseZero.cs" />
     <Compile Include="Assets\Resources\Scripts\TutorialSpecific\TutorialCamera.cs" />
     <Compile Include="Assets\Resources\Scripts\TutorialSpecific\TutorialController.cs" />
     <Compile Include="Assets\Resources\Scripts\TutorialSpecific\TutorialGestures.cs" />
+    <Compile Include="Assets\Resources\Scripts\TutorialSpecific\TutorialWaypoint.cs" />
     <Compile Include="Assets\Scenes\Slides\Resources\CursorPresentation.cs" />
     <Compile Include="Assets\Scenes\Slides\Resources\GestureRecognition.cs" />
     <Compile Include="Assets\Scenes\Slides\Resources\PresentationTerminal.cs" />

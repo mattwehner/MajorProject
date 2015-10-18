@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Assets.Resources.Scripts.Storage;
+using Assets.Resources.Scripts.TutorialSpecific;
 using Assets.Scripts;
 using Leap;
 using UnityEngine;
@@ -48,7 +49,12 @@ namespace Assets.Resources.Scripts.Controllers
             {
                 PlaySound(1);
                 EnableNavAgent(false);
-                WaypointController.Instance.Delete();
+                if (WaypointController.Instance != null)
+                { WaypointController.Instance.Delete(); }
+                else
+                {
+                    TutorialWaypoint.Instance.Delete();
+                }
                 _destination = Vector3.zero;
                 print("destination cleared at: " + Time.timeSinceLevelLoad);
             }
@@ -113,7 +119,9 @@ namespace Assets.Resources.Scripts.Controllers
         internal void SetWaypoint(Vector3 destination)
         {
             _destination = destination;
-            var waypoint = GameController.Instance.CurrentWaypoint.transform.position.y;
+            var waypoint = (GameController.Instance != null)
+                ? GameController.Instance.CurrentWaypoint.transform.position.y
+                : TutorialController.Instance.CurrentWaypoint.transform.position.y;
 
             if (_onGround)
             {
@@ -185,7 +193,13 @@ namespace Assets.Resources.Scripts.Controllers
             yield return new WaitForSeconds(3);
             Destroy(_message);
             _destination = Vector3.zero;
-            WaypointController.Instance.Delete();
+
+            if(WaypointController.Instance != null)
+            { WaypointController.Instance.Delete();}
+            else
+            {
+                TutorialWaypoint.Instance.Delete();
+            }
         }
 
         private IEnumerator CanClearWaypoint()

@@ -7,6 +7,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific
 {
     public class TutorialCamera : MonoBehaviour
     {
+        public static TutorialCamera Instance;
         public bool IsCamera;
 
         private bool _cameraChecked;
@@ -19,6 +20,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific
 
         private void Awake()
         {
+            Instance = this;
             if (Player == null)
             {
                 Player = GameObject.FindGameObjectWithTag("Player");

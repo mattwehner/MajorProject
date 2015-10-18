@@ -24,7 +24,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
         void Update ()
         {
             _frame = TutorialGestures.Instance.Controller.Frame();
-            if (_frame.Hands.IsEmpty) { return;}
+            if (_frame.Hands.IsEmpty || TutorialController.Instance.CurrentPhase != 0) { return;}
 
             if (Title.activeSelf)
             {
@@ -37,7 +37,6 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
                         var c = text.color;
                         text.color = new Color(c.r, c.g, c.b, alpha - Time.fixedDeltaTime);
                     }
-                    print(elements[0].color.a);
                     Title.SetActive(elements[0].color.a > -2);
                     IntroText.gameObject.SetActive(elements[0].color.a > -2);
                 }
@@ -62,6 +61,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
             {
                 CameraHint.SetActive(false);
                 MoveCamera.SetActive(true);
+                TutorialController.Instance.NextPhase();
                 TutorialController.Instance.CanUseCamera = true;
             }
         }
@@ -93,7 +93,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
             }
             if (handHeight.y < 195 && handHeight.y > 125)
             {
-                IntroText.text = "Perfect. Your hand is read best here";
+                IntroText.text = "Perfect. Your hand is better tracked here";
                 IntroText.color = new Color32(55, 159, 0, 255);
                 inState = true;
             }
