@@ -7,11 +7,91 @@ ModelImporter:
   fileIDToRecycleName:
     100000: default
     100002: //RootNode
+    100004: infinity_room:infinity_room:polySurface15
+    100006: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:infinity_room:polySurface15
+    100008: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:infinity_room:polySurface15
+    100010: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface15
+    100012: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface16
+    100014: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface15
+    100016: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface16
+    100018: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface20
+    100020: infinity_room:large
+    100022: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:large
+    100024: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:large
+    100026: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:large
+    100028: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:transition
+    100030: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:end
+    100032: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:large
+    100034: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:transition
     400000: default
     400002: //RootNode
+    400004: infinity_room:infinity_room:polySurface15
+    400006: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:infinity_room:polySurface15
+    400008: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:infinity_room:polySurface15
+    400010: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface15
+    400012: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface16
+    400014: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface15
+    400016: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface16
+    400018: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface20
+    400020: infinity_room:large
+    400022: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:large
+    400024: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:large
+    400026: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:large
+    400028: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:transition
+    400030: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:end
+    400032: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:large
+    400034: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:transition
     2300000: default
+    2300002: infinity_room:infinity_room:polySurface15
+    2300004: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:infinity_room:polySurface15
+    2300006: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:infinity_room:polySurface15
+    2300008: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface15
+    2300010: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface16
+    2300012: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface15
+    2300014: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface16
+    2300016: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface20
+    2300018: infinity_room:large
+    2300020: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:large
+    2300022: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:large
+    2300024: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:large
+    2300026: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:transition
+    2300028: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:end
+    2300030: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:large
+    2300032: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:transition
     3300000: default
+    3300002: infinity_room:infinity_room:polySurface15
+    3300004: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:infinity_room:polySurface15
+    3300006: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:infinity_room:polySurface15
+    3300008: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface15
+    3300010: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface16
+    3300012: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface15
+    3300014: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface16
+    3300016: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface20
+    3300018: infinity_room:large
+    3300020: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:large
+    3300022: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:large
+    3300024: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:large
+    3300026: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:transition
+    3300028: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:end
+    3300030: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:large
+    3300032: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:transition
     4300000: default
+    4300002: infinity_room:infinity_room:polySurface15
+    4300004: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:infinity_room:polySurface15
+    4300006: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:infinity_room:polySurface15
+    4300008: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface15
+    4300010: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:infinity_room:polySurface16
+    4300012: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface15
+    4300014: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface16
+    4300016: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:infinity_room:polySurface20
+    4300018: infinity_room:large
+    4300020: Level1:Mesh1_Level1:level_Level1:polySurface3_Level1:polySurface4_Level1:polySurface6_Level1:polySurface11_infinity_room:large
+    4300022: Level1:Mesh1_Level1:polySurface4_Level1:polySurface11_Level1:powercell_slot_infinity_room:large
+    4300024: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:large
+    4300026: Level2:Mesh1_Level2:level_Level2:polySurface3_Level2:polySurface4_Level2:polySurface6_Level2:polySurface11_infinity_room:transition
+    4300028: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:end
+    4300030: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:large
+    4300032: Level3:Mesh1_Level3:level_Level3:polySurface3_Level3:polySurface4_Level3:polySurface6_Level3:polySurface11_infinity_room:transition
   materials:
     importMaterials: 1
     materialName: 0

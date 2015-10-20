@@ -1,4 +1,5 @@
-﻿using Leap;
+﻿using System.Collections.Generic;
+using Leap;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
         public GameObject CameraHint;
         public TextMesh IntroText;
         public GameObject MoveCamera;
+        public GameObject Line;
 
         private Frame _frame;
 
@@ -19,6 +21,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
             IntroText.gameObject.SetActive(true);
             CameraHint.SetActive(false);
             MoveCamera.SetActive(false);
+            Line.SetActive(false);
         }
 
         void Update ()
@@ -59,9 +62,11 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
             CameraHint.SetActive(true);
             if (TutorialGestures.Instance.IsCamera)
             {
-                CameraHint.SetActive(false);
                 MoveCamera.SetActive(true);
+                Line.SetActive(true);
+                var saveItems = new List<Transform> {CameraHint.transform, Line.transform};
                 TutorialController.Instance.NextPhase();
+                TutorialController.Instance.ClearPreviousPhase(saveItems);
                 TutorialController.Instance.CanUseCamera = true;
             }
         }
@@ -93,7 +98,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
             }
             if (handHeight.y < 195 && handHeight.y > 125)
             {
-                IntroText.text = "Perfect. Your hand is better tracked here";
+                IntroText.text = "Perfect. Your hand is tracked best here";
                 IntroText.color = new Color32(55, 159, 0, 255);
                 inState = true;
             }

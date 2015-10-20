@@ -27,7 +27,6 @@ namespace Assets.Resources.Scripts.TutorialSpecific
         void Awake()
         {
             Instance = this;
-            GameObject.FindGameObjectWithTag("Player").transform.position = Vector3.zero;
             CurrentPhase = -1;
             NextPhase();
         }
@@ -39,6 +38,17 @@ namespace Assets.Resources.Scripts.TutorialSpecific
             _objectCollection = Instantiate(Phases[nextPhase]);
             CurrentPhase += 1;
             print("Current Phase is now " + CurrentPhase);
+        }
+
+        public void ClearPreviousPhase(List<Transform> saveList)
+        {
+                var phase = new GameObject { name = "Phase" + (CurrentPhase - 1) };
+                foreach (Transform item in saveList)
+                {
+                    item.SetParent(phase.transform, true);
+                }
+                phase.transform.SetParent(transform);
+            Destroy(_tempCollection);
         }
 
         public void ClearPreviousPhase()

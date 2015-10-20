@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Assets.Resources.Scripts.TutorialSpecific.Phases
@@ -9,13 +10,10 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
         public GameObject Instructions1;
         public GameObject Instructions2;
         public GameObject Line;
-        public RawImage HandAnimation;
-        public Texture2D Hand1;
-        public Texture2D Hand2;
+        public GestureAnimator HandAnimation;
         public static bool HasReachedWaypoint;
 
         private float _awakeTime;
-        private bool _clearedPhase;
 
         private bool _animateHand;
         private bool _isHand1;
@@ -28,7 +26,6 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
             Instructions1.SetActive(false);
             Instructions2.SetActive(false);
             Line.SetActive(false);
-            print("Phase One Started");
         }
         void Update ()
         {
@@ -39,23 +36,16 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
             if (TutorialController.Instance.CanSetWaypoint && HasReachedWaypoint)
             {
                 Line.SetActive(true);
+                var saveItems = new List<Transform> { Instructions1.transform, Instructions2.transform, Line.transform };
                 TutorialController.Instance.NextPhase();
-                TutorialCamera.Instance.CameraBounds.y = 60;
+                TutorialController.Instance.ClearPreviousPhase(saveItems);
+                TutorialCamera.Instance.CameraBounds.y = 46f;
             }
-            if (Time.timeSinceLevelLoad > _switchTime + 0.5 && _animateHand)
+            if (!HandAnimation.Animate)
             {
-                HandAnimation.texture = (_isHand1) ?Hand2: Hand1;
-                _isHand1 = !_isHand1;
-                _switchTime = Time.timeSinceLevelLoad;
-            }
-            if (!_animateHand)
-            {
-                if (Time.timeSinceLevelLoad > (_awakeTime + 7) && !_clearedPhase)
+                if (Time.timeSinceLevelLoad > (_awakeTime + 7))
                 {
-                    TutorialController.Instance.ClearPreviousPhase();
-                    Title.SetActive(false);
                     Instructions1.SetActive(true);
-                    _clearedPhase = true;
                 }
                 if (Instructions1.activeSelf && TutorialGestures.Instance.IsPointing)
                 {
@@ -63,7 +53,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
                 }
                 if (Instructions2.activeSelf)
                 {
-                    _animateHand = true;
+                    HandAnimation.Animate = true;
                     TutorialController.Instance.CanSetWaypoint = true;
                 }
             }

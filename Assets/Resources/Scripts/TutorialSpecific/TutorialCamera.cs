@@ -11,7 +11,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific
         public bool IsCamera;
 
         private bool _cameraChecked;
-        private Vector2 _cameraStart;
+        private Vector3 _cameraStart;
         private Frame _frame;
         public Camera Camera;
         public Vector4 CameraBounds;
@@ -75,7 +75,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific
 
             if (!_cameraChecked)
             {
-                _cameraStart = new Vector2(handPosition.x, handPosition.y);
+                _cameraStart = new Vector3(handPosition.x, handPosition.y, handPosition.z);
             }
             _cameraChecked = true;
 
@@ -88,6 +88,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific
         private void IsAtBoundry()
         {
             var normalizedHandPosition = _frame.InteractionBox.NormalizePoint(_frame.Hands[0].StabilizedPalmPosition);
+            print(normalizedHandPosition.z);
             var x = 0;
             var y = 0;
             if (normalizedHandPosition.x == 0)

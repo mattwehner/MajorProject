@@ -62,15 +62,15 @@ namespace Assets.Resources.Scripts.TutorialSpecific
                 TutorialWaypoint.Instance.Create(transformed);
             }
 
-            //if (inCollider && Triggering != null)
-            //{
-            //    IInteractable interactable = Triggering.GetComponent<IInteractable>();
-            //    interactable.Activate();
-            //    if (!Triggering.name.Contains("Small") && Triggering.name != "Console_Arbie")
-            //    {
-            //        UIController.Instance.CursorModeOn(interactable.PoweredOn);
-            //    }
-            //}
+            if (inCollider && Triggering != null)
+            {
+                IInteractable interactable = Triggering.GetComponent<IInteractable>();
+                interactable.Activate();
+                if (!Triggering.name.Contains("Small") && Triggering.name != "Console_Arbie")
+                {
+                    UIController.Instance.CursorModeOn(interactable.PoweredOn);
+                }
+            }
         }
 
         private bool IsCameraGesture()
@@ -103,6 +103,12 @@ namespace Assets.Resources.Scripts.TutorialSpecific
             var now = (extendedFingers[0].Id == index.Id || extendedFingers[1].Id == index.Id)
                       && (extendedFingers.Count == 1);
             return (before && now);
+        }
+
+        public void SetCollider(bool b, GameObject o)
+        {
+            InCollider = b;
+            Triggering = o;
         }
     }
 }
