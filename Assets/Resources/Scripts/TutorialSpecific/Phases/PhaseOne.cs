@@ -43,7 +43,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific.Phases
             }
             if (!HandAnimation.Animate)
             {
-                if (Time.timeSinceLevelLoad > (_awakeTime + 7))
+                if (Time.timeSinceLevelLoad > (_awakeTime + 3))
                 {
                     Instructions1.SetActive(true);
                 }

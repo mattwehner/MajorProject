@@ -45,6 +45,14 @@ public class SwipeToChange : MonoBehaviour
                 Application.LoadLevel(BackwardScene);
             }
         }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            Application.LoadLevel(BackwardScene);
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            Application.LoadLevel(ForwardScene);
+        }
     }
 
     IEnumerator WaitForSceneStart()

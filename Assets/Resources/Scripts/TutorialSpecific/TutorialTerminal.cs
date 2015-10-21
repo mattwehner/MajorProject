@@ -49,11 +49,27 @@ namespace Assets.Resources.Scripts.Object_Specific
 
         public void Activate()
         {
-            if (!IsActive)
+            if (!IsActive && TutorialController.Instance.CurrentPhase == 2)
             {
                 Activated.color = Color.green;
                 Phase2.ActivatedTerminals += 1;
                 IsActive = true;
+                return;
+            }
+            if(TutorialController.Instance.CurrentPhase != 2) {
+                Destroy(_uiPanel);
+                if (PoweredOn)
+                {
+                    IsActive = true;
+                }
+                else
+                {
+                    _uiPanel = Instantiate(UnityEngine.Resources.Load("Prefabs/UI/NoPowerWarning")) as GameObject;
+                    _uiPanel.transform.SetParent(gameObject.transform, true);
+                    _uiPanel.transform.localPosition = Vector3.up * 2;
+                    InteractionBounds.SetActive(false);
+                    StartCoroutine(HidePowerUI());
+                }
             }
         }
 
@@ -77,18 +93,29 @@ namespace Assets.Resources.Scripts.Object_Specific
             {
                 case 1:
                     ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Small_On", out _powerOn);
-                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("ConsoleSmallOff", out _powerOff);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Small_Off", out _powerOff);
                     break;
                 case 2:
                     ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Medium_On", out _powerOn);
-                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("ConsoleMediumOff", out _powerOff);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Medium_Off", out _powerOff);
                     break;
                 case 3:
                     ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Large_Broken", out _powerOn);
                     ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Large_Broken", out _powerOff);
                     break;
             }
-            Activated.color = Color.red;
+
+            Phase2 = Phase2 ?? new PhaseTwo();
+            
+
+        }
+
+        void Start()
+        {
+            if (TutorialController.Instance.CurrentPhase == 2)
+            {
+                Activated.color = Color.red;
+            }
         }
 
         private void Update()

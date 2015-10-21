@@ -1,4 +1,5 @@
-﻿using Assets.Resources.Scripts.Controllers;
+﻿using System;
+using Assets.Resources.Scripts.Controllers;
 using Assets.Scripts;
 using Assets.Scripts.Object_Specific;
 using Leap;
@@ -30,13 +31,13 @@ namespace Assets.Resources.Scripts.TutorialSpecific
 
         void Update()
         {
-            _storedFrame = (Controller.Frame().Id > (_storedFrame.Id + 10)) ? Controller.Frame() : _storedFrame;
+            
 
             if (Controller.Frame().Hands.IsEmpty)
             {
                 return;
             }
-
+            _storedFrame = (Controller.Frame().Id > (_storedFrame.Id + 10)) ? Controller.Frame() : _storedFrame;
             if (!TutorialController.Instance.InCursorMode)
             {
                 IsCamera = IsCameraGesture();
@@ -68,7 +69,7 @@ namespace Assets.Resources.Scripts.TutorialSpecific
                 interactable.Activate();
                 if (!Triggering.name.Contains("Small") && Triggering.name != "Console_Arbie")
                 {
-                    UIController.Instance.CursorModeOn(interactable.PoweredOn);
+                    throw new NotImplementedException();
                 }
             }
         }

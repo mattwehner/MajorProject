@@ -28,17 +28,21 @@ public class PhaseTwo : MonoBehaviour
 	    {
 	        var position = Player.transform.localPosition.x;
 	        var newCap = Mathf.Clamp(1 -(position - 28)/13, 0, 1);
-            print(newCap);
 	        TutorialCamera.Instance.CameraBounds.w = newCap;
 	    }
-	    if (ActivatedTerminals == 3)
+	    if (ActivatedTerminals == 3 && TutorialController.Instance.CurrentPhase == 2)
 	    {
 	        Door.enabled = true;
             Line.SetActive(true);
-	        var saveItems = new List<Transform> {gameObject.transform};
+	        var saveItems = new List<Transform>();
             TutorialController.Instance.NextPhase();
+	        int children = transform.childCount;
+	        for (int i = 0; i < children; ++i)
+	        {
+	            saveItems.Add(transform.GetChild(i).transform);
+	        }
             TutorialController.Instance.ClearPreviousPhase(saveItems);
-            TutorialCamera.Instance.CameraBounds.y = 60f;
+            TutorialCamera.Instance.CameraBounds.y = 66f;
         }
     }
 }

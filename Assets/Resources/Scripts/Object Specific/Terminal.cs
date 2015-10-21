@@ -84,11 +84,11 @@ namespace Assets.Resources.Scripts.Object_Specific
             {
                 case 1:
                     ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Small_On", out _powerOn);
-                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("ConsoleSmallOff", out _powerOff);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Small_Off", out _powerOff);
                     break;
                 case 2:
                     ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Medium_On", out _powerOn);
-                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("ConsoleMediumOff", out _powerOff);
+                    ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Medium_Off", out _powerOff);
                     break;
                 case 3:
                     ObjectRefences.Instance.MaterialReferenceList.TryGetValue("Console_Large_Broken", out _powerOn);

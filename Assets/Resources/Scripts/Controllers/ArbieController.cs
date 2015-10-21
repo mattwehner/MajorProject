@@ -154,6 +154,10 @@ namespace Assets.Resources.Scripts.Controllers
                 _scared = !(hit.distance < 4);
         }
 
+        public void NavAgentEnabled(bool enable)
+        {
+            EnableNavAgent(enable);
+        }
         private void EnableNavAgent(bool enable)
         {
             _navAgent.enabled = enable;

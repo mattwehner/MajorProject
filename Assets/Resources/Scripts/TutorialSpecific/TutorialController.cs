@@ -31,6 +31,14 @@ namespace Assets.Resources.Scripts.TutorialSpecific
             NextPhase();
         }
 
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Application.LoadLevel(Application.loadedLevel + 1);
+            }
+        }
+
         public void NextPhase()
         {
             var nextPhase = CurrentPhase + 1;

@@ -12,7 +12,7 @@ namespace Assets.Resources.Scripts.Controllers
         public Animator SmallDoors;
         public GameObject Waypoint;
 
-        private void Awake()
+        void Awake()
         {
             if (Instance != null && Instance != this)
             {
@@ -24,13 +24,26 @@ namespace Assets.Resources.Scripts.Controllers
             UnityEngine.Cursor.visible = (Application.platform == RuntimePlatform.WindowsEditor);
         }
 
-        private void Start()
+        void Start()
         {
             SpawnArbie();
         }
 
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Backspace))
+            {
+                Application.LoadLevel(Application.loadedLevel);
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SpawnArbie();
+            }
+        }
+
         public void SpawnArbie()
         {
+            Destroy(GameObject.FindGameObjectWithTag("Arbie"));
             var Arbie = Instantiate(UnityEngine.Resources.Load("Prefabs/Arbie/Arbie")) as GameObject;
             Arbie.name = "Arbie";
             Arbie.transform.position = new Vector3(-5.021008f, -1.139717f, 4.79f);

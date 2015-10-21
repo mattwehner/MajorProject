@@ -88,7 +88,6 @@ namespace Assets.Resources.Scripts.TutorialSpecific
         private void IsAtBoundry()
         {
             var normalizedHandPosition = _frame.InteractionBox.NormalizePoint(_frame.Hands[0].StabilizedPalmPosition);
-            print(normalizedHandPosition.z);
             var x = 0;
             var y = 0;
             if (normalizedHandPosition.x == 0)
